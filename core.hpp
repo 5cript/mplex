@@ -1,0 +1,4 @@
+#ifndef CORE_HPP_INCLUDED
+#define CORE_HPP_INCLUDED
+
+#endif // CORE_HPP_INCLUDED
