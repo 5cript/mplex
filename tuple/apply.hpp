@@ -13,7 +13,7 @@ namespace mplex {
     template <typename TupleT, template <typename...> class FinalT, typename ... AccumList>
     struct apply {
         using type = typename
-        apply <typename pop_front<TupleT>::type, FinalT, AccumList..., typename front<TupleT>::type>::type;
+        apply <pop_front_t<TupleT>, FinalT, AccumList..., front_t<TupleT>>::type;
     };
 
     template <template <typename...> class FinalT, typename ... AccumList>
@@ -28,7 +28,7 @@ namespace mplex {
     template <typename TupleT, template <typename...> class FinalT, typename ... AccumList>
     struct apply_reverse {
         using type = typename
-        apply_reverse <typename pop_back<TupleT>::type, FinalT, typename back<TupleT>::type, AccumList...>::type;
+        apply_reverse <pop_back_t<TupleT>, FinalT, back_t<TupleT>, AccumList...>::type;
     };
 
     template <template <typename...> class FinalT, typename ... AccumList>
