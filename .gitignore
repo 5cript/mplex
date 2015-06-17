@@ -1,2 +1,6 @@
 *.cbp
 /main.cpp
+/main.i
+*.o
+*.depend
+*.exe
