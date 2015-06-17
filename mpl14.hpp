@@ -27,4 +27,7 @@
 #include "time/time.hpp"
 #include "time/date.hpp"
 
+// random
+#include "random/random.hpp"
+
 #endif // MPL14_HPP_INCLUDED
