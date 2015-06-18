@@ -11,6 +11,9 @@
 #include "tuple/push_front.hpp"
 #include "tuple/pop_back.hpp"
 #include "tuple/pop_front.hpp"
+#include "tuple/split.hpp"
+#include "tuple/remove_if.hpp"
+#include "tuple/all_of.hpp"
 
 // control
 #include "if.hpp"
