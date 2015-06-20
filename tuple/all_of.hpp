@@ -2,9 +2,17 @@
 #define ALL_OF_HPP_INCLUDED
 
 #include <tuple>
+#include "../integral.hpp"
 
 namespace mplex {
-    template <typename Tuple, template <typename> class Predicate, bool abort = false>
+
+    /** @param Tuple A tuple.
+     *  @param Predicate A predicate returning true/false via ::value.
+     *  @param Abort Internal.
+     *
+     *  @return boolean via value.
+     */
+    template <typename Tuple, template <typename> class Predicate, bool Abort = false>
     struct all_of { };
 
     template <template <typename> class Predicate, typename T, typename ... List>
@@ -21,12 +29,15 @@ namespace mplex {
         };
     };
 
-    template <template <typename> class Predicate, bool abort>
-    struct all_of <std::tuple <>, Predicate, abort> {
+    template <template <typename> class Predicate, bool Abort>
+    struct all_of <std::tuple <>, Predicate, Abort> {
         enum {
             value = 1
         };
     };
+
+    template <typename Tuple, template <typename> class Predicate>
+    using all_of_t = typename all_of<Tuple, Predicate>::type;
 }
 
 #endif // ALL_OF_HPP_INCLUDED
