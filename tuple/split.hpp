@@ -3,10 +3,10 @@
 
 #include "pop_front.hpp"
 #include "push_back.hpp"
+#include "../traits/type_traits.hpp" // std::is_same
 #include "../control/if.hpp"
 
 #include <tuple>
-#include <type_traits>
 
 namespace mplex {
 
