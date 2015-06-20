@@ -5,9 +5,13 @@
 
 namespace mplex
 {
-    template <typename TupleT>
+    /** @param Tuple A tuple.
+     *
+     *  @return The first element of the tuple.
+     */
+    template <typename Tuple>
     struct front {
-        using type = typename std::tuple_element<0, TupleT>::type;
+        using type = typename std::tuple_element<0, Tuple>::type;
     };
 
     template <>
@@ -15,8 +19,8 @@ namespace mplex
         // this is an invalid request
     };
 
-    template <typename TupleT>
-    using front_t = typename front<TupleT>::type;
+    template <typename Tuple>
+    using front_t = typename front<Tuple>::type;
 }
 
 #endif // FRONT_HPP_INCLUDED

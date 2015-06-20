@@ -6,17 +6,22 @@
 
 namespace mplex
 {
-    template <typename TupleT, typename ElemT>
+    /** @param Tuple A tuple.
+     *  @param Elem An arbitrary type.
+     *
+     *  @return The same tuple with one element ("Elem") more at the end.
+     */
+    template <typename Tuple, typename Elem>
     struct push_back {
     };
 
-    template <typename ElemT, typename ... List>
-    struct push_back <std::tuple<List...>, ElemT> {
-        using type = std::tuple<List..., ElemT>;
+    template <typename Elem, typename ... List>
+    struct push_back <std::tuple<List...>, Elem> {
+        using type = std::tuple<List..., Elem>;
     };
 
-    template <typename TupleT, typename ElemT>
-    using push_back_t = typename push_back<TupleT, ElemT>::type;
+    template <typename Tuple, typename Elem>
+    using push_back_t = typename push_back<Tuple, Elem>::type;
 }
 
 #endif // PUSH_BACK_HPP_INCLUDED

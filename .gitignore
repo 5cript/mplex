@@ -4,3 +4,6 @@
 *.o
 *.depend
 *.exe
+*.layout
+/CMakeLists.txt
+*.idea

@@ -5,6 +5,11 @@
 
 namespace mplex
 {
+    /** @param Tuple A tuple.
+     *  @param Tuple A tuple.
+     *
+     *  @return A concatenation of both tuples
+     */
     template <typename, typename>
     struct concat {
     };

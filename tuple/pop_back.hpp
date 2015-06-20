@@ -6,6 +6,10 @@
 
 namespace mplex
 {
+    /** @param Tuple A tuple.
+     *
+     *  @return The same tuple with one less element at the end.
+     */
     template <typename TupleT>
     struct pop_back {
     };

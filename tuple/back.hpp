@@ -5,6 +5,10 @@
 
 namespace mplex
 {
+    /** @param Tuple A tuple.
+     *
+     *  @return The last element.
+     */
     template <typename TupleT>
     struct back {
         using type = typename std::tuple_element <std::tuple_size<TupleT>::value - 1, TupleT>::type;

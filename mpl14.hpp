@@ -11,9 +11,13 @@
 #include "tuple/push_front.hpp"
 #include "tuple/pop_back.hpp"
 #include "tuple/pop_front.hpp"
+#include "tuple/split.hpp"
+#include "tuple/remove_if.hpp"
+#include "tuple/all_of.hpp"
+#include "tuple/one_of.hpp"
 
 // control
-#include "if.hpp"
+#include "control/if.hpp"
 
 // string
 #include "string/char.hpp"
@@ -22,5 +26,12 @@
 
 // algebra
 #include "integral.hpp"
+
+// date time
+#include "time/time.hpp"
+#include "time/date.hpp"
+
+// random
+#include "random/random.hpp"
 
 #endif // MPL14_HPP_INCLUDED
