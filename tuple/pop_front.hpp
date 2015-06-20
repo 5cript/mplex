@@ -3,6 +3,10 @@
 
 namespace mplex
 {
+    /** @param Tuple A tuple.
+     *
+     *  @return The same tuple with one less element at the front
+     */
     template <typename T>
     struct pop_front {
     };

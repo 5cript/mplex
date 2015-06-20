@@ -2,9 +2,10 @@
 #define STRING_HPP_INCLUDED
 
 #include "char.hpp"
+#include "../tuple/apply.hpp"
+#include "../control/if.hpp"
 
 #include <tuple>
-#include "../tuple/apply.hpp"
 
 namespace mplex {
     template <char ... List>

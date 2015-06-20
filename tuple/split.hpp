@@ -3,12 +3,20 @@
 
 #include "pop_front.hpp"
 #include "push_back.hpp"
-#include "../if.hpp"
+#include "../control/if.hpp"
 
 #include <tuple>
 #include <type_traits>
 
 namespace mplex {
+
+    /** @param Tuple A tuple.
+     *  @param Sepearator A type that is matched via std::is_same used as splitter token.
+     *  @param Accum1 Internal.
+     *  @param Accum2 Internal.
+     *
+     *  @return A new tuple.
+     */
     template <typename Tuple, typename Seperator, typename Accum1 = std::tuple <>, typename Accum2 = std::tuple<>>
     struct split {};
 

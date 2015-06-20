@@ -2,13 +2,22 @@
 #define TRANSFORM_HPP_INCLUDED
 
 namespace mplex {
-    template <template <typename> class Target, template <typename> class Wrap, typename ... List>
-    struct transform {
-        using type = Target<typename Wrap<List>::type...>;
+
+    /** @param Tuple A tuple.
+     *  @param Transformer A transformation predicate.
+     *
+     *  @return std::tuple<Transformer<TupleElements>::type...>
+     */
+    template <typename Tuple, template <typename> class Transformer>
+    struct transform { };
+
+    template <template <typename> class Transformer, typename ... List>
+    struct transform <std::tuple<List...>> {
+        using type = std::tuple<Transformer<List>::type...>;
     };
 
-    template <template <typename> class Target, template <typename> class Wrap, typename ... List>
-    using transform_t = typename transform<Target, Wrap, List...>::type;
+    template <typename Tuple, template <typename> class Transformer>
+    using transform_t = typename transform<Tuple, Transformer>::type;
 }
 
 #endif // TRANSFORM_HPP_INCLUDED

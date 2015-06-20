@@ -1,10 +1,17 @@
 #ifndef REMOVE_IF_HPP_INCLUDED
 #define REMOVE_IF_HPP_INCLUDED
 
-#include "../if.hpp"
+#include "../control/if.hpp"
 #include "push_back.hpp"
 
 namespace mplex {
+
+    /** @param Tuple A tuple.
+     *  @param Predicate A predicate returning true/false via ::value.
+     *  @param Accum Internal.
+     *
+     *  @return boolean via value.
+     */
     template <typename Tuple, template <typename T> class Predicate, typename Accum = std::tuple<>>
     struct remove_if { };
 
