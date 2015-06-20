@@ -14,6 +14,7 @@
 #include "tuple/split.hpp"
 #include "tuple/remove_if.hpp"
 #include "tuple/all_of.hpp"
+#include "tuple/one_of.hpp"
 
 // control
 #include "control/if.hpp"
