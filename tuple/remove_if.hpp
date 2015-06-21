@@ -4,7 +4,8 @@
 #include "../control/if.hpp"
 #include "push_back.hpp"
 
-namespace mplex {
+namespace mplex
+{
 
     /** @param Tuple A tuple.
      *  @param Predicate A predicate returning true/false via ::value.
@@ -12,19 +13,21 @@ namespace mplex {
      *
      *  @return boolean via value.
      */
-    template <typename Tuple, template <typename T> class Predicate, typename Accum = std::tuple<>>
+    template <typename Tuple, template <typename T> class Predicate, typename Accum = std::tuple <>>
     struct remove_if { };
 
     template <typename T, template <typename T> class Predicate, typename Accum, typename ... List>
-    struct remove_if <std::tuple<T, List...>, Predicate, Accum> {
+    struct remove_if <std::tuple <T, List...>, Predicate, Accum>
+    {
         using type =
-            if_t <Predicate<T>::value,
-                  typename remove_if <std::tuple<List...>, Predicate, Accum>::type, // remove
-                  typename remove_if <std::tuple<List...>, Predicate, push_back_t<Accum, T>>::type>; // keep
+        if_t <Predicate <T>::value,
+                typename remove_if <std::tuple <List...>, Predicate, Accum>::type, // remove
+                typename remove_if <std::tuple <List...>, Predicate, push_back_t <Accum, T>>::type>; // keep
     };
 
     template <template <typename T> class Predicate, typename Accum>
-    struct remove_if <std::tuple<>, Predicate, Accum> {
+    struct remove_if <std::tuple <>, Predicate, Accum>
+    {
         using type = Accum;
     };
 

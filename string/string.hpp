@@ -5,39 +5,47 @@
 #include "../tuple/apply.hpp"
 #include "../control/if.hpp"
 
+#include <type_traits>
 #include <tuple>
 
-namespace mplex {
+namespace mplex
+{
     template <char ... List>
-    struct string {
-        using type = std::tuple<char_<List>...>;
-        enum {
-            size = sizeof...(List)
+    struct string
+    {
+        using size_type = std::make_signed_t <std::size_t>;
+
+        using type = std::tuple <char_ <List>...>;
+
+        template <std::size_t N>
+        struct at
+        {
+            using type = typename std::tuple_element <N, type>::type;
+            constexpr static const char value = std::tuple_element <N, type>::type::value;
         };
 
         template <std::size_t N>
-        struct at {
-            using type = typename std::tuple_element<N, type>::type;
-            constexpr static const char value = std::tuple_element<N, type>::type::value;
-        };
-
-        template <std::size_t N>
-        using at_t = typename at<N>::type;
+        using at_t = typename at <N>::type;
 
         constexpr static const char c_str[] = {
-            List..., '\0'
+                List..., '\0'
         };
+
+        constexpr static const size_type size = sizeof...(List);
+
+        constexpr static const size_type npos = -1;
     };
     template <char ... List>
-    constexpr const char string<List...>::c_str[];
+    constexpr const char string <List...>::c_str[];
 
     template <typename ... CharArray>
-    struct __string {
-        using type = string<CharArray::value...>;
+    struct __string
+    {
+        using type = string <CharArray::value...>;
     };
 
     template <typename ... CharArray>
-    using translate = typename __string<CharArray...>::type;
+    using translate = typename __string <CharArray...>::type;
 
 /*
     template <typename ... CharArray>

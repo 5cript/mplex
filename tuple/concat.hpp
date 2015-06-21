@@ -11,16 +11,18 @@ namespace mplex
      *  @return A concatenation of both tuples
      */
     template <typename, typename>
-    struct concat {
+    struct concat
+    {
     };
 
     template <typename ... Ts, typename ... Us>
-    struct concat <std::tuple<Ts...>, std::tuple<Us...>> {
-        using type = std::tuple<Ts..., Us...>;
+    struct concat <std::tuple <Ts...>, std::tuple <Us...>>
+    {
+        using type = std::tuple <Ts..., Us...>;
     };
 
     template <typename T, typename U>
-    using concat_t = typename concat<T, U>::type;
+    using concat_t = typename concat <T, U>::type;
 }
 
 #endif // CONCAT_HPP_INCLUDED

@@ -23,6 +23,7 @@
 #include "string/char.hpp"
 #include "string/string.hpp"
 #include "string/strcat.hpp"
+#include "string/find.hpp"
 
 // algebra
 #include "integral.hpp"

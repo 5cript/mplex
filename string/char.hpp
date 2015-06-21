@@ -3,9 +3,11 @@
 
 #include "../integral.hpp"
 
-namespace mplex {
+namespace mplex
+{
     DECLARE_INTEGRAL(char);
-    DECLARE_INTEGRAL_N(unsigned char, unsigned_char);
+    DECLARE_INTEGRAL_N(unsigned
+                               char, unsigned_char);
 
     DECLARE_INTEGRAL(wchar_t);
 

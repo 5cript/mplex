@@ -3,28 +3,35 @@
 
 #include <cstdint>
 
-namespace mplex {
+namespace mplex
+{
     template <typename T, T Value>
-    struct integral {
+    struct integral
+    {
         constexpr const static T value = Value;
     };
 
-    #define DECLARE_INTEGRAL(TYPE) \
+#define DECLARE_INTEGRAL(TYPE) \
     template <TYPE V> \
     struct TYPE ## _ : public integral<TYPE, V> {}
 
-    #define DECLARE_INTEGRAL_N(TYPE, NAME) \
+#define DECLARE_INTEGRAL_N(TYPE, NAME) \
     template <TYPE V> \
     struct NAME ## _ : public integral<TYPE, V> {}
 
     DECLARE_INTEGRAL(int);
     DECLARE_INTEGRAL(long);
-    DECLARE_INTEGRAL_N(long long, long_long);
+    DECLARE_INTEGRAL_N(long
+                               long, long_long);
     DECLARE_INTEGRAL(short);
 
-    DECLARE_INTEGRAL_N(unsigned long, unsigned_long);
-    DECLARE_INTEGRAL_N(unsigned long long, unsigned_long_long);
-    DECLARE_INTEGRAL_N(unsigned short, unsigned_short);
+    DECLARE_INTEGRAL_N(unsigned
+                               long, unsigned_long);
+    DECLARE_INTEGRAL_N(unsigned
+                               long
+                               long, unsigned_long_long);
+    DECLARE_INTEGRAL_N(unsigned
+                               short, unsigned_short);
 
     DECLARE_INTEGRAL(uint8_t);
     DECLARE_INTEGRAL(uint16_t);
