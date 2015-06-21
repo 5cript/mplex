@@ -17,9 +17,13 @@ namespace mplex
 
         using type = std::tuple <char_ <List>...>;
 
+        constexpr static const size_type size = sizeof...(List);
+
         template <std::size_t N>
         struct at
         {
+            static_assert(N < size, "Index out of bounds");
+
             using type = typename std::tuple_element <N, type>::type;
             constexpr static const char value = std::tuple_element <N, type>::type::value;
         };
@@ -30,8 +34,6 @@ namespace mplex
         constexpr static const char c_str[] = {
                 List..., '\0'
         };
-
-        constexpr static const size_type size = sizeof...(List);
 
         constexpr static const size_type npos = -1;
     };
