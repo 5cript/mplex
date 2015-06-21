@@ -4,15 +4,15 @@
 namespace mplex
 {
     template <bool Condition,
-            typename TrueT,
-            typename FalseT>
+              typename TrueT,
+              typename FalseT>
     struct if_
     {
         using type = TrueT;
     };
 
     template <typename TrueT,
-            typename FalseT>
+              typename FalseT>
     struct if_ <false, TrueT, FalseT>
     {
         using type = FalseT;
