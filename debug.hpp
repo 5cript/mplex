@@ -37,13 +37,14 @@
 namespace mpl = boost::mpl;
 
 template <typename T, unsigned bufferSize = 1 << 16>
-static void streamDemangled(std::ostream &stream)
+static std::ostream& streamDemangled(std::ostream &stream)
 {
     char buffer[bufferSize];
     int status = 0;
     std::size_t bufSizeCpy = bufferSize;
     abi::__cxa_demangle(typeid(T).name(), buffer, &bufSizeCpy, &status);
     stream << buffer;
+    return stream;
 }
 
 template <typename Sequence, unsigned ReverseCounter>
