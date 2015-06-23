@@ -10,14 +10,12 @@ namespace mplex
      *  @return The first element of the tuple.
      */
     template <typename Tuple>
-    struct front
-    {
+    struct front {
         using type = typename std::tuple_element <0, Tuple>::type;
     };
 
     template <>
-    struct front <std::tuple <>>
-    {
+    struct front <std::tuple <>> {
         // this is an invalid request
     };
 

@@ -6,8 +6,7 @@
 namespace mplex { namespace random {
 
     template <typename T, T Rand, T Max, T Min>
-    struct uniform_int_distribution
-    {
+    struct uniform_int_distribution {
         constexpr static const T value = (Rand % (Max - Min + 1) + Min);
     };
 }

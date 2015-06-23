@@ -14,8 +14,7 @@ namespace mplex
     { };
 
     template <typename Tuple, unsigned First, unsigned Second, unsigned Index, typename T, typename ... ReducedList>
-    struct element_swap <Tuple, First, Second, std::tuple<T, ReducedList...>, Index>
-    {
+    struct element_swap <Tuple, First, Second, std::tuple<T, ReducedList...>, Index> {
         static_assert (First < std::tuple_size <Tuple>::value, "Index out of bounds");
         static_assert (Second < std::tuple_size <Tuple>::value, "Index out of bounds");
 
@@ -32,8 +31,7 @@ namespace mplex
     };
 
     template <typename Tuple, unsigned First, unsigned Second, unsigned Index>
-    struct element_swap <Tuple, First, Second, std::tuple<>, Index>
-    {
+    struct element_swap <Tuple, First, Second, std::tuple<>, Index> {
         using type = std::tuple <>;
     };
 

@@ -14,21 +14,18 @@ namespace mplex
     struct one_of { };
 
     template <template <typename> class Predicate, typename T, typename ... List>
-    struct one_of <std::tuple <T, List...>, Predicate, false>
-    {
+    struct one_of <std::tuple <T, List...>, Predicate, false> {
         constexpr static const bool value = Predicate <T>::value
                                             | one_of <std::tuple <List...>, Predicate, Predicate <T>::value>::value;
     };
 
     template <typename TupleT, template <typename> class Predicate>
-    struct one_of <TupleT, Predicate, true /* abort */>
-    {
+    struct one_of <TupleT, Predicate, true /* abort */> {
         constexpr static const bool value = true;
     };
 
     template <template <typename> class Predicate>
-    struct one_of <std::tuple <>, Predicate, false>
-    {
+    struct one_of <std::tuple <>, Predicate, false> {
         constexpr static const bool value = false;
     };
 }

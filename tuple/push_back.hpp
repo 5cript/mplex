@@ -13,12 +13,10 @@ namespace mplex
      */
     template <typename Tuple, typename Elem>
     struct push_back
-    {
-    };
+    { };
 
     template <typename Elem, typename ... List>
-    struct push_back <std::tuple <List...>, Elem>
-    {
+    struct push_back <std::tuple <List...>, Elem> {
         using type = std::tuple <List..., Elem>;
     };
 

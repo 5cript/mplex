@@ -7,8 +7,7 @@ namespace mplex
 {
     namespace internal
     {
-        constexpr unsigned get_date_char(unsigned index, bool sub)
-        {
+        constexpr unsigned get_date_char(unsigned index, bool sub) {
             return __DATE__[index] - (int) sub * '0';
         }
     }

@@ -20,8 +20,7 @@ namespace mplex
         constexpr static const size_type size = sizeof...(List);
 
         template <std::size_t N>
-        struct at
-        {
+        struct at {
             static_assert(N < size, "Index out of bounds");
 
             using type = typename std::tuple_element <N, type>::type;
@@ -41,8 +40,7 @@ namespace mplex
     constexpr const char string <List...>::c_str[];
 
     template <typename ... CharArray>
-    struct __string
-    {
+    struct __string {
         using type = string <CharArray::value...>;
     };
 

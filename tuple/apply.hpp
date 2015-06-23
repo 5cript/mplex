@@ -17,15 +17,13 @@ namespace mplex
      *  @return basically Final<TupleElements...>.
      */
     template <typename Tuple, template <typename...> class Final, typename ... AccumList>
-    struct apply
-    {
+    struct apply {
         using type = typename
         apply <pop_front_t <Tuple>, Final, AccumList..., front_t <Tuple>>::type;
     };
 
     template <template <typename...> class Final, typename ... AccumList>
-    struct apply <std::tuple <>, Final, AccumList...>
-    {
+    struct apply <std::tuple <>, Final, AccumList...> {
         using type = Final <AccumList...>;
     };
 
@@ -34,15 +32,13 @@ namespace mplex
 
     // APPLY_REVERSE
     template <typename Tuple, template <typename...> class Final, typename ... AccumList>
-    struct apply_reverse
-    {
+    struct apply_reverse {
         using type = typename
         apply_reverse <pop_back_t <Tuple>, Final, back_t <Tuple>, AccumList...>::type;
     };
 
     template <template <typename...> class Final, typename ... AccumList>
-    struct apply_reverse <std::tuple <>, Final, AccumList...>
-    {
+    struct apply_reverse <std::tuple <>, Final, AccumList...> {
         using type = Final <AccumList...>;
     };
 

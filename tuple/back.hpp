@@ -10,14 +10,12 @@ namespace mplex
      *  @return The last element.
      */
     template <typename TupleT>
-    struct back
-    {
+    struct back {
         using type = typename std::tuple_element <std::tuple_size <TupleT>::value - 1, TupleT>::type;
     };
 
     template <>
-    struct back <std::tuple <>>
-    {
+    struct back <std::tuple <>> {
         // invalid request
     };
 

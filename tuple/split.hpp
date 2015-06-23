@@ -22,8 +22,7 @@ namespace mplex
     struct split { };
 
     template <typename T, typename Seperator, typename Accum1, typename Accum2, typename ... List>
-    struct split <std::tuple <T, List...>, Seperator, Accum1, Accum2>
-    {
+    struct split <std::tuple <T, List...>, Seperator, Accum1, Accum2> {
 
         using type = if_t <!std::is_same <T, Seperator>::value,
                 typename split <std::tuple <List...>, Seperator, push_back_t <Accum1, T>, Accum2>::type, // do "nothing" and push T to accum
@@ -31,8 +30,7 @@ namespace mplex
     };
 
     template <typename Seperator, typename Accum1, typename Accum2>
-    struct split <std::tuple <>, Seperator, Accum1, Accum2>
-    {
+    struct split <std::tuple <>, Seperator, Accum1, Accum2> {
         using type = push_back_t <Accum2, Accum1>;
     };
 

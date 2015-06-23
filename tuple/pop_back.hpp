@@ -12,24 +12,20 @@ namespace mplex
      */
     template <typename TupleT>
     struct pop_back
-    {
-    };
+    { };
 
     template <>
-    struct pop_back <std::tuple <>>
-    {
+    struct pop_back <std::tuple <>> {
         using type = std::tuple <>;
     };
 
     template <typename T>
-    struct pop_back <std::tuple <T>>
-    {
+    struct pop_back <std::tuple <T>> {
         using type = std::tuple <>;
     };
 
     template <typename T, typename ... List>
-    struct pop_back <std::tuple <T, List...>>
-    {
+    struct pop_back <std::tuple <T, List...>> {
         using type = concat_t <std::tuple <T>, typename pop_back <std::tuple <List...>>::type>;
     };
 

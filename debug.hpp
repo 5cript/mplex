@@ -2,7 +2,9 @@
 #define DEBUG_HPP_INCLUDED
 
 #include <iostream>
+#include <tuple>
 
+/*
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/vector_c.hpp>
 #include <boost/mpl/transform.hpp>
@@ -31,10 +33,9 @@
 #include <boost/mpl/lambda.hpp>
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/insert_range.hpp>
+*/
 #include <typeinfo>
 #include <cxxabi.h>
-
-namespace mpl = boost::mpl;
 
 template <typename T, unsigned bufferSize = 1 << 16>
 static std::ostream& streamDemangled(std::ostream &stream)
@@ -52,8 +53,7 @@ struct PrintSequence
 {
     static void print(char const *glue)
     {
-        streamDemangled <typename mpl::at <Sequence,
-                mpl::int_ < PrintSequence <Sequence, 1>::size_ - ReverseCounter> >::type > (std::cout);
+        streamDemangled <typename std::tuple_element <PrintSequence <Sequence, 1>::size_ - ReverseCounter, Sequence >::type> (std::cout);
         std::cout << glue;
 
         PrintSequence <Sequence, ReverseCounter - 1>::print(glue);
@@ -65,12 +65,12 @@ struct PrintSequence <Sequence, 1>
 {
     enum
     {
-        size_ = mpl::size <Sequence>::value
+        size_ = std::tuple_size <Sequence>::value
     };
 
     static void print(char const *glue)
     {
-        streamDemangled <typename mpl::at <Sequence, mpl::int_ < size_ - 1> >::type > (std::cout);
+        streamDemangled <typename std::tuple_element <size_ - 1, Sequence >::type> (std::cout);
         std::cout << glue;
     }
 };
@@ -78,12 +78,12 @@ struct PrintSequence <Sequence, 1>
 template <typename Sequence, unsigned ReverseCounter, typename CastT = unsigned>
 struct PrintNumberSequence
 {
-    static void print(char const *glue)
+    static std::ostream& print(char const *glue)
     {
-        using vtype = typename mpl::at_c <Sequence, PrintNumberSequence <Sequence, 1>::size_ - ReverseCounter>::type;
+        using vtype = typename std::tuple_element <PrintNumberSequence <Sequence, 1>::size_ - ReverseCounter, Sequence>::type;
         std::cout << static_cast <CastT> (vtype::value) << glue;
 
-        PrintNumberSequence <Sequence, ReverseCounter - 1, CastT>::print(glue);
+        return PrintNumberSequence <Sequence, ReverseCounter - 1, CastT>::print(glue);
     }
 };
 
@@ -92,27 +92,42 @@ struct PrintNumberSequence <Sequence, 1, CastT>
 {
     enum
     {
-        size_ = mpl::size <Sequence>::value
+        size_ = std::tuple_size <Sequence>::value
     };
 
-    static void print(char const *)
+    static std::ostream& print(char const *)
     {
-        std::cout << static_cast <CastT> (mpl::at_c <Sequence, size_ - 1>::type::value);
+        std::cout << static_cast <CastT> (std::tuple_element <size_ - 1, Sequence>::type::value);
+        return std::cout;
+    }
+};
+
+
+template <typename Sequence, typename CastT>
+struct PrintNumberSequence <Sequence, 0, CastT>
+{
+    enum
+    {
+        size_ = 0
+    };
+
+    static std::ostream& print(char const*)
+    {
+        return std::cout;
     }
 };
 
 #define PRINT_NUMBERS_1(SEQUENCE, GLUE) \
-PrintNumberSequence<SEQUENCE, mpl::size<SEQUENCE>::value>::print(GLUE)
+PrintNumberSequence<SEQUENCE, std::tuple_size<SEQUENCE>::value>::print(GLUE)
 
 #define PRINT_NUMBERS_2(SEQUENCE, GLUE, CONVERT) \
 PrintNumberSequence<SEQUENCE, std::tuple_size<SEQUENCE>::value, CONVERT>::print(GLUE)
 
-// this macro overloading technique originally taken from "stackoverflow"
 #define GET_MACRO(_1, _2, _3, NAME, ...) NAME
 #define PRINT_NUMBERS(...) GET_MACRO(__VA_ARGS__, PRINT_NUMBERS_2, PRINT_NUMBERS_1)(__VA_ARGS__)
 
 #define PRINT_TYPES(SEQUENCE, GLUE) \
-PrintSequence<SEQUENCE, mpl::size<SEQUENCE>::value>::print(GLUE);
+PrintSequence<SEQUENCE, std::tuple_size<SEQUENCE>::value>::print(GLUE);
 
 #define PRINT_SINGLE(TYPE) \
 streamDemangled<TYPE>(std::cout)

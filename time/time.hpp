@@ -5,8 +5,7 @@ namespace mplex
 {
     namespace internal
     {
-        constexpr unsigned get_time_char(unsigned index)
-        {
+        constexpr unsigned get_time_char(unsigned index) {
             return __TIME__[index] - '0';
         }
     }

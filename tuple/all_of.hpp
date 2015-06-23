@@ -17,28 +17,22 @@ namespace mplex
     struct all_of { };
 
     template <template <typename> class Predicate, typename T, typename ... List>
-    struct all_of <std::tuple <T, List...>, Predicate, false>
-    {
-        enum
-        {
+    struct all_of <std::tuple <T, List...>, Predicate, false> {
+        enum {
             value = Predicate <T>::value * all_of <std::tuple <List...>, Predicate, !Predicate <T>::value>::value
         };
     };
 
     template <template <typename> class Predicate, typename T, typename ... List>
-    struct all_of <std::tuple <T, List...>, Predicate, true>
-    {
-        enum
-        {
+    struct all_of <std::tuple <T, List...>, Predicate, true> {
+        enum {
             value = 0
         };
     };
 
     template <template <typename> class Predicate, bool Abort>
-    struct all_of <std::tuple <>, Predicate, Abort>
-    {
-        enum
-        {
+    struct all_of <std::tuple <>, Predicate, Abort> {
+        enum {
             value = 1
         };
     };
