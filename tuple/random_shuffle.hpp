@@ -14,6 +14,7 @@
  *      swap(a[j], a[i])
  */
 
+/*
 namespace mplex
 {
     template <typename Tuple, typename RandomEngine, typename Result = std::tuple<>>
@@ -41,5 +42,6 @@ namespace mplex
     template <typename Tuple, typename RandomEngine>
     using random_shuffle_t = typename random_shuffle <Tuple, RandomEngine>::type;
 }
+*/
 
 #endif // RANDOM_SHUFFLE_HPP_INCLUDED
