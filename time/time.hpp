@@ -1,5 +1,5 @@
-#ifndef TIME_HPP_INCLUDED
-#define TIME_HPP_INCLUDED
+#ifndef MPL14_TIME_TIME_HPP_INCLUDED
+#define MPL14_TIME_TIME_HPP_INCLUDED
 
 namespace mplex
 {
@@ -18,4 +18,4 @@ namespace mplex
     };
 }
 
-#endif // TIME_HPP_INCLUDED
+#endif // MPL14_TIME_TIME_HPP_INCLUDED
