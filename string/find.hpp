@@ -2,13 +2,14 @@
 // Created by Tim on 21.06.2015.
 //
 
-#ifndef MPL14_FIND_HPP
-#define MPL14_FIND_HPP
+#ifndef MPL14_STRING_FIND_HPP
+#define MPL14_STRING_FIND_HPP
 
 #include "string.hpp"
 #include "char.hpp"
 #include "../integral.hpp"
-#include "../traits/type_traits.hpp"
+
+#include <type_traits>
 
 namespace mplex { namespace string_algorithm
 {
@@ -38,4 +39,4 @@ namespace mplex { namespace string_algorithm
 }
 }
 
-#endif //MPL14_FIND_HPP
+#endif //MPL14_STRING_FIND_HPP
