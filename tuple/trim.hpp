@@ -1,5 +1,5 @@
-#ifndef TRIM_HPP_INCLUDED
-#define TRIM_HPP_INCLUDED
+#ifndef TUPLE_TRIM_HPP_INCLUDED
+#define TUPLE_TRIM_HPP_INCLUDED
 
 #include <tuple>
 #include "pop_back.hpp"
