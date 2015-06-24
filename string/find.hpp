@@ -1,7 +1,3 @@
-//
-// Created by Tim on 21.06.2015.
-//
-
 #ifndef MPL14_STRING_FIND_HPP
 #define MPL14_STRING_FIND_HPP
 
