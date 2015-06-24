@@ -19,19 +19,15 @@ namespace mplex
     template <TYPE V> \
     struct NAME ## _ : public integral<TYPE, V> {}
 
+    DECLARE_INTEGRAL(bool);
     DECLARE_INTEGRAL(int);
     DECLARE_INTEGRAL(long);
-    DECLARE_INTEGRAL_N(long
-                               long, long_long);
+    DECLARE_INTEGRAL_N(long long, long_long);
     DECLARE_INTEGRAL(short);
 
-    DECLARE_INTEGRAL_N(unsigned
-                               long, unsigned_long);
-    DECLARE_INTEGRAL_N(unsigned
-                               long
-                               long, unsigned_long_long);
-    DECLARE_INTEGRAL_N(unsigned
-                               short, unsigned_short);
+    DECLARE_INTEGRAL_N(unsigned long, unsigned_long);
+    DECLARE_INTEGRAL_N(unsigned long long, unsigned_long_long);
+    DECLARE_INTEGRAL_N(unsigned short, unsigned_short);
 
     DECLARE_INTEGRAL(uint8_t);
     DECLARE_INTEGRAL(uint16_t);
