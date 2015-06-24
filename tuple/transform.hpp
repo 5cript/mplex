@@ -14,8 +14,8 @@ namespace mplex
     { };
 
     template <template <typename> class Transformer, typename ... List>
-    struct transform <std::tuple < List...>> {
-        using type = std::tuple<Transformer <List>::type...>;
+    struct transform <std::tuple < List...>, Transformer> {
+        using type = std::tuple <typename Transformer <List>::type...>;
     };
 
     template <typename Tuple, template <typename> class Transformer>
