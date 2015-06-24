@@ -1,17 +1,20 @@
-#ifndef STRCAT_HPP_INCLUDED
-#define STRCAT_HPP_INCLUDED
+#ifndef MPL14_STRING_STRCAT_HPP_INCLUDED
+#define MPL14_STRING_STRCAT_HPP_INCLUDED
 
 #include "string.hpp"
 #include "../tuple/concat.hpp"
+#include "algorithm_adapter.hpp"
 
-namespace mplex {
+namespace mplex { namespace string_algorithm
+{
     template <typename StringT, typename StringU>
     struct strcat {
-        using type = apply_t<concat_t<typename StringT::type, typename StringU::type>, mplex::translate>;
+        using type = apply_t <concat_t <typename StringT::type, typename StringU::type>, mplex::translate>;
     };
 
     template <typename StringT, typename StringU>
-    using strcat_t = typename strcat<StringT, StringU>::type;
+    using strcat_t = typename strcat <StringT, StringU>::type;
+}
 }
 
-#endif // STRCAT_HPP_INCLUDED
+#endif // MPL14_STRING_STRCAT_HPP_INCLUDED

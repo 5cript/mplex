@@ -1,5 +1,5 @@
-#ifndef POP_FRONT_HPP_INCLUDED
-#define POP_FRONT_HPP_INCLUDED
+#ifndef MPL14_TUPLE_POP_FRONT_HPP_INCLUDED
+#define MPL14_TUPLE_POP_FRONT_HPP_INCLUDED
 
 namespace mplex
 {
@@ -12,17 +12,17 @@ namespace mplex
     };
 
     template <typename T, typename ... List>
-    struct pop_front <std::tuple<T, List...>> {
+    struct pop_front <std::tuple < T, List...>> {
         using type = std::tuple <List...>;
     };
 
     template <>
-    struct pop_front <std::tuple<>> {
-        using type = std::tuple<>;
+    struct pop_front <std::tuple <>> {
+    using type = std::tuple <>;
     };
 
     template <typename TupleT>
-    using pop_front_t = typename pop_front<TupleT>::type;
+    using pop_front_t = typename pop_front <TupleT>::type;
 }
 
-#endif // POP_FRONT_HPP_INCLUDED
+#endif // MPL14_TUPLE_POP_FRONT_HPP_INCLUDED

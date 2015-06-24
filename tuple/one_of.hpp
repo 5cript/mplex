@@ -1,7 +1,8 @@
-#ifndef ONE_OF_HPP_INCLUDED
-#define ONE_OF_HPP_INCLUDED
+#ifndef MPL14_TUPLE_ONE_OF_HPP_INCLUDED
+#define MPL14_TUPLE_ONE_OF_HPP_INCLUDED
 
-namespace mplex {
+namespace mplex
+{
 
     /** @param Tuple A tuple.
      *  @param Predicate A predicate returning true/false via ::value.
@@ -14,8 +15,8 @@ namespace mplex {
 
     template <template <typename> class Predicate, typename T, typename ... List>
     struct one_of <std::tuple <T, List...>, Predicate, false> {
-        constexpr static const bool value = Predicate<T>::value
-                                          | one_of<std::tuple<List...>, Predicate, Predicate<T>::value>::value;
+        constexpr static const bool value = Predicate <T>::value
+                                            | one_of <std::tuple <List...>, Predicate, Predicate <T>::value>::value;
     };
 
     template <typename TupleT, template <typename> class Predicate>
@@ -24,9 +25,9 @@ namespace mplex {
     };
 
     template <template <typename> class Predicate>
-    struct one_of <std::tuple<>, Predicate, false> {
+    struct one_of <std::tuple <>, Predicate, false> {
         constexpr static const bool value = false;
     };
 }
 
-#endif // ONE_OF_HPP_INCLUDED
+#endif // MPL14_TUPLE_ONE_OF_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef FRONT_HPP_INCLUDED
-#define FRONT_HPP_INCLUDED
+#ifndef MPL14_TUPLE_FRONT_HPP_INCLUDED
+#define MPL14_TUPLE_FRONT_HPP_INCLUDED
 
 #include <tuple>
 
@@ -11,16 +11,16 @@ namespace mplex
      */
     template <typename Tuple>
     struct front {
-        using type = typename std::tuple_element<0, Tuple>::type;
+        using type = typename std::tuple_element <0, Tuple>::type;
     };
 
     template <>
-    struct front <std::tuple<>> {
+    struct front <std::tuple <>> {
         // this is an invalid request
     };
 
     template <typename Tuple>
-    using front_t = typename front<Tuple>::type;
+    using front_t = typename front <Tuple>::type;
 }
 
-#endif // FRONT_HPP_INCLUDED
+#endif // MPL14_TUPLE_FRONT_HPP_INCLUDED

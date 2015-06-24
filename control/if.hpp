@@ -1,7 +1,8 @@
-#ifndef IF_HPP_INCLUDED
-#define IF_HPP_INCLUDED
+#ifndef MPL14_CONTROL_IF_HPP_INCLUDED
+#define MPL14_CONTROL_IF_HPP_INCLUDED
 
-namespace mplex {
+namespace mplex
+{
     template <bool Condition,
               typename TrueT,
               typename FalseT>
@@ -16,7 +17,7 @@ namespace mplex {
     };
 
     template <bool Condition, typename TrueT, typename FalseT>
-    using if_t = typename if_<Condition, TrueT, FalseT>::type;
+    using if_t = typename if_ <Condition, TrueT, FalseT>::type;
 }
 
-#endif // IF_HPP_INCLUDED
+#endif // MPL14_CONTROL_IF_HPP_INCLUDED
