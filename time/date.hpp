@@ -1,5 +1,5 @@
-#ifndef DATE_HPP_INCLUDED
-#define DATE_HPP_INCLUDED
+#ifndef MPL14_TIME_DATE_HPP_INCLUDED
+#define MPL14_TIME_DATE_HPP_INCLUDED
 
 #include "../string/string.hpp"
 
@@ -28,4 +28,4 @@ namespace mplex
     };
 }
 
-#endif // DATE_HPP_INCLUDED
+#endif // MPL14_TIME_DATE_HPP_INCLUDED
