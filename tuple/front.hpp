@@ -1,5 +1,5 @@
-#ifndef FRONT_HPP_INCLUDED
-#define FRONT_HPP_INCLUDED
+#ifndef MPL14_TUPLE_FRONT_HPP_INCLUDED
+#define MPL14_TUPLE_FRONT_HPP_INCLUDED
 
 #include <tuple>
 
@@ -23,4 +23,4 @@ namespace mplex
     using front_t = typename front <Tuple>::type;
 }
 
-#endif // FRONT_HPP_INCLUDED
+#endif // MPL14_TUPLE_FRONT_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef TRANSFORM_HPP_INCLUDED
-#define TRANSFORM_HPP_INCLUDED
+#ifndef MPL14_TUPLE_TRANSFORM_HPP_INCLUDED
+#define MPL14_TUPLE_TRANSFORM_HPP_INCLUDED
 
 namespace mplex
 {
@@ -22,4 +22,4 @@ namespace mplex
     using transform_t = typename transform <Tuple, Transformer>::type;
 }
 
-#endif // TRANSFORM_HPP_INCLUDED
+#endif // MPL14_TUPLE_TRANSFORM_HPP_INCLUDED

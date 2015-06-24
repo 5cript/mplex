@@ -1,5 +1,5 @@
-#ifndef BACK_HPP_INCLUDED
-#define BACK_HPP_INCLUDED
+#ifndef MPL14_TUPLE_BACK_HPP_INCLUDED
+#define MPL14_TUPLE_BACK_HPP_INCLUDED
 
 #include <tuple>
 
@@ -23,4 +23,4 @@ namespace mplex
     using back_t = typename back <TupleT>::type;
 }
 
-#endif // BACK_HPP_INCLUDED
+#endif // MPL14_TUPLE_BACK_HPP_INCLUDED

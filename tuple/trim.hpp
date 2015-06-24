@@ -1,5 +1,5 @@
-#ifndef TUPLE_TRIM_HPP_INCLUDED
-#define TUPLE_TRIM_HPP_INCLUDED
+#ifndef MPL14_TUPLE_TUPLE_TRIM_HPP_INCLUDED
+#define MPL14_TUPLE_TUPLE_TRIM_HPP_INCLUDED
 
 #include <tuple>
 #include "pop_back.hpp"
@@ -60,4 +60,4 @@ namespace mplex {
     using trim_t = typename trim <Tuple, Predicate>::type;
 }
 
-#endif // TRIM_HPP_INCLUDED
+#endif // MPL14_TUPLE_TRIM_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef POP_BACK_HPP_INCLUDED
-#define POP_BACK_HPP_INCLUDED
+#ifndef MPL14_TUPLE_POP_BACK_HPP_INCLUDED
+#define MPL14_TUPLE_POP_BACK_HPP_INCLUDED
 
 #include "concat.hpp"
 #include <tuple>
@@ -33,4 +33,4 @@ namespace mplex
     using pop_back_t = typename pop_back <TupleT>::type;
 }
 
-#endif // POP_BACK_HPP_INCLUDED
+#endif // MPL14_TUPLE_POP_BACK_HPP_INCLUDED

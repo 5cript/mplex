@@ -1,5 +1,5 @@
-#ifndef SPLIT_HPP_INCLUDED
-#define SPLIT_HPP_INCLUDED
+#ifndef MPL14_TUPLE_SPLIT_HPP_INCLUDED
+#define MPL14_TUPLE_SPLIT_HPP_INCLUDED
 
 #include "pop_front.hpp"
 #include "push_back.hpp"
@@ -40,4 +40,4 @@ namespace mplex
     // if cur = Seperator
 }
 
-#endif // SPLIT_HPP_INCLUDED
+#endif // MPL14_TUPLE_SPLIT_HPP_INCLUDED

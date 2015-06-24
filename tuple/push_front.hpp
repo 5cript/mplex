@@ -1,5 +1,5 @@
-#ifndef PUSH_FRONT_HPP_INCLUDED
-#define PUSH_FRONT_HPP_INCLUDED
+#ifndef MPL14_TUPLE_PUSH_FRONT_HPP_INCLUDED
+#define MPL14_TUPLE_PUSH_FRONT_HPP_INCLUDED
 
 #include <tuple>
 
@@ -23,4 +23,4 @@ namespace mplex
     using push_front_t = typename push_front <Tuple, Elem>::type;
 }
 
-#endif // PUSH_FRONT_HPP_INCLUDED
+#endif // MPL14_TUPLE_PUSH_FRONT_HPP_INCLUDED

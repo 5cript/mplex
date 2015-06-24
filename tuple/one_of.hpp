@@ -1,5 +1,5 @@
-#ifndef ONE_OF_HPP_INCLUDED
-#define ONE_OF_HPP_INCLUDED
+#ifndef MPL14_TUPLE_ONE_OF_HPP_INCLUDED
+#define MPL14_TUPLE_ONE_OF_HPP_INCLUDED
 
 namespace mplex
 {
@@ -30,4 +30,4 @@ namespace mplex
     };
 }
 
-#endif // ONE_OF_HPP_INCLUDED
+#endif // MPL14_TUPLE_ONE_OF_HPP_INCLUDED

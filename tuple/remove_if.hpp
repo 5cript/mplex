@@ -1,5 +1,5 @@
-#ifndef REMOVE_IF_HPP_INCLUDED
-#define REMOVE_IF_HPP_INCLUDED
+#ifndef MPL14_TUPLE_REMOVE_IF_HPP_INCLUDED
+#define MPL14_TUPLE_REMOVE_IF_HPP_INCLUDED
 
 #include "../control/if.hpp"
 #include "push_back.hpp"
@@ -33,4 +33,4 @@ namespace mplex
     using remove_if_t = typename remove_if <Tuple, Predicate>::type;
 }
 
-#endif // REMOVE_IF_HPP_INCLUDED
+#endif // MPL14_TUPLE_REMOVE_IF_HPP_INCLUDED

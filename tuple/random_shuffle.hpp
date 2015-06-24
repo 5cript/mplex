@@ -1,5 +1,5 @@
-#ifndef RANDOM_SHUFFLE_HPP_INCLUDED
-#define RANDOM_SHUFFLE_HPP_INCLUDED
+#ifndef MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
+#define MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
 
 #include "../random/linear_congruential_engine.hpp"
 #include "../random/uniform_int_distribution.hpp"
@@ -44,4 +44,4 @@ namespace mplex
 }
 */
 
-#endif // RANDOM_SHUFFLE_HPP_INCLUDED
+#endif // MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED

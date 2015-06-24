@@ -1,5 +1,5 @@
-#ifndef CONCAT_HPP_INCLUDED
-#define CONCAT_HPP_INCLUDED
+#ifndef MPL14_TUPLE_CONCAT_HPP_INCLUDED
+#define MPL14_TUPLE_CONCAT_HPP_INCLUDED
 
 #include <tuple>
 
@@ -23,4 +23,4 @@ namespace mplex
     using concat_t = typename concat <T, U>::type;
 }
 
-#endif // CONCAT_HPP_INCLUDED
+#endif // MPL14_TUPLE_CONCAT_HPP_INCLUDED

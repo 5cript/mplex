@@ -1,5 +1,5 @@
-#ifndef ALL_OF_HPP_INCLUDED
-#define ALL_OF_HPP_INCLUDED
+#ifndef MPL14_TUPLE_ALL_OF_HPP_INCLUDED
+#define MPL14_TUPLE_ALL_OF_HPP_INCLUDED
 
 #include <tuple>
 #include "../integral.hpp"
@@ -41,4 +41,4 @@ namespace mplex
     using all_of_t = typename all_of <Tuple, Predicate>::type;
 }
 
-#endif // ALL_OF_HPP_INCLUDED
+#endif // MPL14_TUPLE_ALL_OF_HPP_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef INTEGRAL_HPP_INCLUDED
-#define INTEGRAL_HPP_INCLUDED
+#ifndef MPL14_INTEGRAL_HPP_INCLUDED
+#define MPL14_INTEGRAL_HPP_INCLUDED
 
 #include <cstdint>
 
@@ -40,4 +40,4 @@ namespace mplex
     DECLARE_INTEGRAL(int64_t);
 }
 
-#endif // INTEGRAL_HPP_INCLUDED
+#endif // MPL14_INTEGRAL_HPP_INCLUDED

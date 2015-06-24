@@ -1,5 +1,5 @@
-#ifndef APPLY_HPP_INCLUDED
-#define APPLY_HPP_INCLUDED
+#ifndef MPL14_TUPLE_APPLY_HPP_INCLUDED
+#define MPL14_TUPLE_APPLY_HPP_INCLUDED
 
 #include "back.hpp"
 #include "front.hpp"
@@ -46,4 +46,4 @@ namespace mplex
     using apply_reverse_t = typename apply_reverse <Tuple, Final, AccumList...>::type;
 }
 
-#endif // APPLY_HPP_INCLUDED
+#endif // MPL14_TUPLE_APPLY_HPP_INCLUDED

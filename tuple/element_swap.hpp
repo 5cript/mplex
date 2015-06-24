@@ -1,5 +1,5 @@
-#ifndef ELEMENT_SWAP_HPP_INCLUDED
-#define ELEMENT_SWAP_HPP_INCLUDED
+#ifndef MPL14_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
+#define MPL14_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
 
 #include "../control/if.hpp"
 #include "../integral.hpp"
@@ -39,4 +39,4 @@ namespace mplex
     using element_swap_t = typename element_swap<Tuple, First, Second>::type;
 }
 
-#endif // ELEMENT_SWAP_HPP_INCLUDED
+#endif // MPL14_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
