@@ -17,6 +17,9 @@
 #include "tuple/one_of.hpp"
 #include "tuple/element_swap.hpp"
 #include "tuple/trim.hpp"
+#include "tuple/erase.hpp"
+#include "tuple/copy.hpp"
+#include "tuple/erase.hpp"
 
 // control
 #include "control/if.hpp"
@@ -26,10 +29,12 @@
 #include "string/char.hpp"
 #include "string/case_convert.hpp"
 #include "string/classification.hpp"
+#include "string/compare.hpp"
 #include "string/find.hpp"
 #include "string/strcat.hpp"
 #include "string/string.hpp"
 #include "string/trim.hpp"
+#include "string/inline_string.hpp"
 
 // algebra
 #include "integral.hpp"
