@@ -16,6 +16,7 @@
 
 #define STRING_IMPL(str, n) mplex::apply_t <mplex::trim_right_t <std::tuple <SPLIT_##n(str, 0)>, mplex::is_zero>, mplex::translate>
 
+#define SHORT_STRING(str) STRING_IMPL(str, 16)
 #define STRING(str) STRING_IMPL(str, 64)
 #define LONG_STRING(str) STRING_IMPL(str, 256) // HEAVY
 #define LONG_LONG_STRING(str) STRING_IMPL(str, 1024) // ULTRA HEAVY
