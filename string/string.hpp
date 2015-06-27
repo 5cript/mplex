@@ -71,9 +71,9 @@ namespace mplex
         template <std::size_t counter, template <char ...> class T, std::size_t ... indexList> \
         struct _makeString { \
             using type = typename \
-            mplex::if_ <counter == size_ - 1, \
+            mplex::if_vt <counter == size_ - 1, \
                         T <data_[indexList]...>, \
-                        _makeString <counter+1, T, indexList..., counter>>::type::type;\
+                        _makeString <counter+1, T, indexList..., counter>>::type;\
         }; \
     \
         struct makeString { \
