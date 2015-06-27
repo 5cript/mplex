@@ -18,13 +18,13 @@ namespace mplex
         static_assert (First < std::tuple_size <Tuple>::value, "Index out of bounds");
         static_assert (Second < std::tuple_size <Tuple>::value, "Index out of bounds");
 
-        using single = if_t <Index == First,
-                             integral <unsigned, Second>,
-                             if_t <Index == Second,
-                                   integral <unsigned, First>,
-                                   integral <unsigned, Index>
-                                   >
-                            >;
+        using single = if_vt <Index == First,
+                              integral <unsigned, Second>,
+                              if_vt <Index == Second,
+                                     integral <unsigned, First>,
+                                     integral <unsigned, Index>
+                                     >
+                             >;
 
         using type = push_front_t <typename element_swap<Tuple, First, Second, std::tuple<ReducedList...>, Index + 1>::type,
                                    typename std::tuple_element <single::value, Tuple>::type>;
