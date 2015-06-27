@@ -24,6 +24,9 @@
 #include "tuple/erase.hpp"
 #include "tuple/copy.hpp"
 #include "tuple/erase.hpp"
+#include "tuple/replace.hpp"
+#include "tuple/find.hpp"
+#include "tuple/find_if.hpp"
 
 // control
 #include "control/if.hpp"
