@@ -30,6 +30,7 @@
 #include "string/case_convert.hpp"
 #include "string/classification.hpp"
 #include "string/compare.hpp"
+#include "string/erase.hpp"
 #include "string/find.hpp"
 #include "string/strcat.hpp"
 #include "string/string.hpp"
