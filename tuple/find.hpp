@@ -16,6 +16,8 @@ namespace mplex {
               typename T, typename ... List>
     struct find <std::tuple<T, List...>, What, ComparisonPredicate, Where, Pos, SWPos> {
 
+        static_assert (std::tuple_size <What>::value != 0, "The search string must not be empty");
+
         constexpr static const bool char_match = ComparisonPredicate<T, typename std::tuple_element <SWPos::value, What>::type >::value;
 
         // where is the match
@@ -42,6 +44,8 @@ namespace mplex {
               typename Where, typename Pos, typename SWPos>
     struct find <std::tuple <>, What, ComparisonPredicate, Where, Pos, SWPos>
     {
+        static_assert (std::tuple_size <What>::value != 0, "The search string must not be empty");
+
         using type = struct this_type {
             constexpr static const bool found = SWPos::value == std::tuple_size <What>::value;
             constexpr static const int where = if_t <found, Where, int_<-1>>::value;
