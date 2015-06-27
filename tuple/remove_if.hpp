@@ -19,9 +19,9 @@ namespace mplex
     template <typename T, typename Predicate, typename Accum, typename... List>
     struct remove_if <std::tuple <T, List...>, Predicate, Accum> {
         using type =
-        if_t <Predicate::template apply <T>::value,
-              typename remove_if <std::tuple <List...>, Predicate, Accum>::type, // remove
-              typename remove_if <std::tuple <List...>, Predicate, push_back_t <Accum, T>>::type>; // keep
+        if_vt <Predicate::template apply <T>::value,
+               typename remove_if <std::tuple <List...>, Predicate, Accum>::type, // remove
+               typename remove_if <std::tuple <List...>, Predicate, push_back_t <Accum, T>>::type>; // keep
     };
 
     template <typename Predicate, typename Accum>
