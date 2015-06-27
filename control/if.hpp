@@ -3,7 +3,7 @@
 
 namespace mplex
 {
-    template <bool Condition,
+    template <typename Condition,
               typename TrueT,
               typename FalseT>
     struct if_ {
@@ -12,12 +12,15 @@ namespace mplex
 
     template <typename TrueT,
               typename FalseT>
-    struct if_ <false, TrueT, FalseT> {
+    struct if_ <bool_ <false>, TrueT, FalseT> {
         using type = FalseT;
     };
 
-    template <bool Condition, typename TrueT, typename FalseT>
+    template <typename Condition, typename TrueT, typename FalseT>
     using if_t = typename if_ <Condition, TrueT, FalseT>::type;
+
+    template <bool Condition, typename TrueT, typename FalseT>
+    using if_vt = typename if_ <bool_ <Condition>, TrueT, FalseT>::type;
 }
 
 #endif // MPL14_CONTROL_IF_HPP_INCLUDED
