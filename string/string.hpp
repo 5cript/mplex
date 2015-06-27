@@ -7,6 +7,7 @@
 
 #include <type_traits>
 #include <tuple>
+#include <iosfwd>
 
 namespace mplex
 {
@@ -47,21 +48,18 @@ namespace mplex
     template <typename... CharArray>
     using translate = typename __string <CharArray...>::type;
 
-/*
-    template <typename... CharArray>
-    struct compile_string_impl_ {
-        constexpr static const char value[] = {
-            CharArray::value..., '\0'
+    template <typename GlueString>
+    struct print_string {
+        using return_type = std::ostream&;
+
+        template <typename String>
+        struct apply {
+            inline static std::ostream& execute(std::ostream& stream) {
+                stream << String::c_str << GlueString::c_str;
+                return stream;
+            }
         };
     };
-    template <typename... CharArray>
-    constexpr const char compile_string_impl_<CharArray...>::value[];
-
-    template <typename StringT>
-    struct compile_string {
-        constexpr static const char* const value = apply<typename StringT::type, compile_string_impl_>::type::value;
-    };
-*/
 
 #define MAKE_STRING(NAME, CONTENT) \
     class StringHolder_ ## NAME \
