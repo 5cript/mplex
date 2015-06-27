@@ -25,9 +25,9 @@ namespace mplex
     struct split <std::tuple <T, List...>, Predicate, Accum1, Accum2, false> {
         constexpr static const bool do_split = Predicate::template apply <T>::value;
 
-        using type = if_t <!do_split,
-                typename split <std::tuple <List...>, Predicate, push_back_t <Accum1, T>, Accum2, do_split>::type, // do "nothing" and push T to accum
-                typename split <std::tuple <List...>, Predicate, std::tuple <>, push_back_t <Accum2, Accum1>, !do_split>::type>;
+        using type = if_vt <!do_split,
+                            typename split <std::tuple <List...>, Predicate, push_back_t <Accum1, T>, Accum2, do_split>::type, // do "nothing" and push T to accum
+                            typename split <std::tuple <List...>, Predicate, std::tuple <>, push_back_t <Accum2, Accum1>, !do_split>::type>;
     };
 
     template <typename Predicate, typename Accum1, typename Accum2>
