@@ -40,6 +40,8 @@
 #include "string/string.hpp"
 #include "string/trim.hpp"
 #include "string/inline_string.hpp"
+#include "string/split.hpp"
+#include "string/remove_if.hpp"
 
 // date time
 #include "time/time.hpp"
@@ -48,5 +50,8 @@
 // random
 #include "random/random.hpp"
 #include "random/linear_congruential_engine.hpp"
+
+// advanced
+#include "advanced/tokenizer.hpp"
 
 #endif // MPL14_HPP_INCLUDED
