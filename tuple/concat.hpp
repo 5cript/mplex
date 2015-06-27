@@ -14,7 +14,7 @@ namespace mplex
     struct concat
     { };
 
-    template <typename ... Ts, typename ... Us>
+    template <typename... Ts, typename... Us>
     struct concat <std::tuple <Ts...>, std::tuple <Us...>> {
         using type = std::tuple <Ts..., Us...>;
     };

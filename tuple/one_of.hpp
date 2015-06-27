@@ -10,21 +10,21 @@ namespace mplex
      *
      *  @return boolean via value.
      */
-    template <typename Tuple, template <typename> class Predicate, bool Abort = false>
+    template <typename Tuple, typename Predicate, bool Abort = false>
     struct one_of { };
 
-    template <template <typename> class Predicate, typename T, typename ... List>
+    template <typename Predicate, typename T, typename... List>
     struct one_of <std::tuple <T, List...>, Predicate, false> {
-        constexpr static const bool value = Predicate <T>::value
-                                            | one_of <std::tuple <List...>, Predicate, Predicate <T>::value>::value;
+        constexpr static const bool value = Predicate::template apply <T>::value
+                                            | one_of <std::tuple <List...>, Predicate, Predicate::template apply <T>::value>::value;
     };
 
-    template <typename TupleT, template <typename> class Predicate>
+    template <typename TupleT, typename Predicate>
     struct one_of <TupleT, Predicate, true /* abort */> {
         constexpr static const bool value = true;
     };
 
-    template <template <typename> class Predicate>
+    template <typename Predicate>
     struct one_of <std::tuple <>, Predicate, false> {
         constexpr static const bool value = false;
     };

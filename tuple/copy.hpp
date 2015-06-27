@@ -7,13 +7,13 @@
 
 #include <tuple>
 
-#include "../integral.hpp"
+#include "../fundamental/integral.hpp"
 
 namespace mplex {
     template <typename Tuple, typename Begin, typename End, bool ambiguity_kill = false>
     struct copy { };
 
-    template <typename Begin, typename End, typename T, typename ... List>
+    template <typename Begin, typename End, typename T, typename... List>
     struct copy <std::tuple <T, List...>, Begin, End, false> {
 
         static_assert (End::value <= 1 + sizeof...(List), "Out of range (End ist too large)");
@@ -22,7 +22,7 @@ namespace mplex {
         using type = typename copy <std::tuple <List...>, unsigned_<Begin::value - 1>, unsigned_<End::value - 1>>::type;
     };
 
-    template <typename End, typename T, typename ... List>
+    template <typename End, typename T, typename... List>
     struct copy <std::tuple <T, List...>, unsigned_<0u>, End, false> {
 
         using Tuple = std::tuple <List...>;
@@ -33,7 +33,7 @@ namespace mplex {
                                    T>;
     };
 
-    template <typename ... List>
+    template <typename... List>
     struct copy <std::tuple<List...>, unsigned_<0u>, unsigned_<0u>, true> {
 
         using type = std::tuple<>;

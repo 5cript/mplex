@@ -18,24 +18,30 @@ namespace mplex
      *
      *  @return A new tuple.
      */
-    template <typename Tuple, typename Seperator, typename Accum1 = std::tuple <>, typename Accum2 = std::tuple <>>
+    template <typename Tuple, typename Predicate, typename Accum1 = std::tuple <>, typename Accum2 = std::tuple <>, bool abort = false>
     struct split { };
 
-    template <typename T, typename Seperator, typename Accum1, typename Accum2, typename ... List>
-    struct split <std::tuple <T, List...>, Seperator, Accum1, Accum2> {
+    template <typename T, typename Predicate, typename Accum1, typename Accum2, typename... List>
+    struct split <std::tuple <T, List...>, Predicate, Accum1, Accum2, false> {
+        constexpr static const bool do_split = Predicate::template apply <T>::value;
 
-        using type = if_t <!std::is_same <T, Seperator>::value,
-                typename split <std::tuple <List...>, Seperator, push_back_t <Accum1, T>, Accum2>::type, // do "nothing" and push T to accum
-                typename split <std::tuple <List...>, Seperator, std::tuple <>, push_back_t <Accum2, Accum1>>::type>;
+        using type = if_t <!do_split,
+                typename split <std::tuple <List...>, Predicate, push_back_t <Accum1, T>, Accum2, do_split>::type, // do "nothing" and push T to accum
+                typename split <std::tuple <List...>, Predicate, std::tuple <>, push_back_t <Accum2, Accum1>, !do_split>::type>;
     };
 
-    template <typename Seperator, typename Accum1, typename Accum2>
-    struct split <std::tuple <>, Seperator, Accum1, Accum2> {
+    template <typename Predicate, typename Accum1, typename Accum2>
+    struct split <std::tuple <>, Predicate, Accum1, Accum2, false> {
         using type = push_back_t <Accum2, Accum1>;
     };
 
-    template <typename Tuple, typename Seperator>
-    using split_t = typename split <Tuple, Seperator>::type;
+    template <typename Tuple, typename Predicate, typename Accum1, typename Accum2>
+    struct split <Tuple, Predicate, Accum1, Accum2, true> {
+        using type = std::tuple<>;
+    };
+
+    template <typename Tuple, typename Predicate>
+    using split_t = typename split <Tuple, Predicate>::type;
 
     // if cur = Seperator
 }

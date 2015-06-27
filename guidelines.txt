@@ -1,0 +1,12 @@
+1) Always provide a typedef for algorithms such as:
+copy<>::type -> copy_t<>
+find<>::type -> find_t<>
+
+2) Pass numbers via integral wrappers
+instead of:
+template <unsigned i> struct {};
+
+do:
+template <typename i> struct {};
+
+3) Predicates have to provide an apply member template and not have any template parameters.

@@ -2,7 +2,7 @@
 #define MPL14_TUPLE_ALL_OF_HPP_INCLUDED
 
 #include <tuple>
-#include "../integral.hpp"
+#include "../fundamental/integral.hpp"
 
 namespace mplex
 {
@@ -13,31 +13,31 @@ namespace mplex
      *
      *  @return boolean via value.
      */
-    template <typename Tuple, template <typename> class Predicate, bool Abort = false>
+    template <typename Tuple, typename Predicate, bool Abort = false>
     struct all_of { };
 
-    template <template <typename> class Predicate, typename T, typename ... List>
+    template <typename Predicate, typename T, typename... List>
     struct all_of <std::tuple <T, List...>, Predicate, false> {
         enum {
-            value = Predicate <T>::value * all_of <std::tuple <List...>, Predicate, !Predicate <T>::value>::value
+            value = Predicate::template apply <T>::value * all_of <std::tuple <List...>, Predicate, !Predicate::template apply <T>::value>::value
         };
     };
 
-    template <template <typename> class Predicate, typename T, typename ... List>
+    template <typename Predicate, typename T, typename... List>
     struct all_of <std::tuple <T, List...>, Predicate, true> {
         enum {
             value = 0
         };
     };
 
-    template <template <typename> class Predicate, bool Abort>
+    template <typename Predicate, bool Abort>
     struct all_of <std::tuple <>, Predicate, Abort> {
         enum {
             value = 1
         };
     };
 
-    template <typename Tuple, template <typename> class Predicate>
+    template <typename Tuple, typename Predicate>
     using all_of_t = typename all_of <Tuple, Predicate>::type;
 }
 

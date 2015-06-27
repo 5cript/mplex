@@ -2,23 +2,24 @@
 #define MPL14_TUPLE_FIND_HPP_INCLUDED
 
 #include "../control/if.hpp"
-#include "../integral.hpp"
+#include "../fundamental/integral.hpp"
+#include "../fundamental/is_same.hpp"
 
 #include <type_traits>
 
 namespace mplex {
-    template <typename Tuple, typename What, template <typename, typename> class ComparisonPredicate = std::is_same,
+    template <typename Tuple, typename What, typename ComparisonPredicate = is_same,
               typename Where = int_<-1>, typename Pos = int_<0>, typename SWPos = int_<0>>
     struct find
     { };
 
-    template <typename What, template <typename, typename> class ComparisonPredicate, typename Where, typename Pos, typename SWPos,
-              typename T, typename ... List>
+    template <typename What, typename ComparisonPredicate, typename Where, typename Pos, typename SWPos,
+              typename T, typename... List>
     struct find <std::tuple<T, List...>, What, ComparisonPredicate, Where, Pos, SWPos> {
 
         static_assert (std::tuple_size <What>::value != 0, "The search string must not be empty");
 
-        constexpr static const bool char_match = ComparisonPredicate<T, typename std::tuple_element <SWPos::value, What>::type >::value;
+        constexpr static const bool char_match = ComparisonPredicate::template apply <T, typename std::tuple_element <SWPos::value, What>::type >::value;
 
         // where is the match
         using next_where = if_t <char_match,
@@ -40,7 +41,7 @@ namespace mplex {
         using type = typename find <next_tuple, What, ComparisonPredicate, next_where, int_<Pos::value + 1>, next_sw>::type;
     };
 
-    template <typename What, template <typename, typename> class ComparisonPredicate,
+    template <typename What, typename ComparisonPredicate,
               typename Where, typename Pos, typename SWPos>
     struct find <std::tuple <>, What, ComparisonPredicate, Where, Pos, SWPos>
     {
@@ -54,7 +55,7 @@ namespace mplex {
         };
     };
 
-    template <typename Tuple, typename What, template <typename, typename> class ComparisonPredicate>
+    template <typename Tuple, typename What, typename ComparisonPredicate = is_same>
     using find_t = typename find <Tuple, What, ComparisonPredicate>::type;
 }
 

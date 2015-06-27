@@ -39,22 +39,22 @@ namespace mplex
     template <char ... List>
     constexpr const char string <List...>::c_str[];
 
-    template <typename ... CharArray>
+    template <typename... CharArray>
     struct __string {
         using type = string <CharArray::value...>;
     };
 
-    template <typename ... CharArray>
+    template <typename... CharArray>
     using translate = typename __string <CharArray...>::type;
 
 /*
-    template <typename ... CharArray>
+    template <typename... CharArray>
     struct compile_string_impl_ {
         constexpr static const char value[] = {
             CharArray::value..., '\0'
         };
     };
-    template <typename ... CharArray>
+    template <typename... CharArray>
     constexpr const char compile_string_impl_<CharArray...>::value[];
 
     template <typename StringT>

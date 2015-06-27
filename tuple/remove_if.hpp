@@ -13,23 +13,23 @@ namespace mplex
      *
      *  @return boolean via value.
      */
-    template <typename Tuple, template <typename T> class Predicate, typename Accum = std::tuple <>>
+    template <typename Tuple, typename Predicate, typename Accum = std::tuple <>>
     struct remove_if { };
 
-    template <typename T, template <typename T> class Predicate, typename Accum, typename ... List>
+    template <typename T, typename Predicate, typename Accum, typename... List>
     struct remove_if <std::tuple <T, List...>, Predicate, Accum> {
         using type =
-        if_t <Predicate <T>::value,
+        if_t <Predicate::template apply <T>::value,
               typename remove_if <std::tuple <List...>, Predicate, Accum>::type, // remove
               typename remove_if <std::tuple <List...>, Predicate, push_back_t <Accum, T>>::type>; // keep
     };
 
-    template <template <typename T> class Predicate, typename Accum>
+    template <typename Predicate, typename Accum>
     struct remove_if <std::tuple <>, Predicate, Accum> {
         using type = Accum;
     };
 
-    template <typename Tuple, template <typename T> class Predicate>
+    template <typename Tuple, typename Predicate>
     using remove_if_t = typename remove_if <Tuple, Predicate>::type;
 }
 

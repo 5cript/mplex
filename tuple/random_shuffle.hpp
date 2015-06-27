@@ -20,7 +20,7 @@ namespace mplex
     template <typename Tuple, typename RandomEngine, typename Result = std::tuple<>>
     struct random_shuffle { };
 
-    template <typename RandomEngine, typename Result, typename T, typename ... List>
+    template <typename RandomEngine, typename Result, typename T, typename... List>
     struct random_shuffle <std::tuple<T, List...>, RandomEngine, Result>
     {
         enum {

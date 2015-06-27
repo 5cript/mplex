@@ -24,7 +24,7 @@ namespace mplex
         using type = std::tuple <>;
     };
 
-    template <typename T, typename ... List>
+    template <typename T, typename... List>
     struct pop_back <std::tuple <T, List...>> {
         using type = concat_t <std::tuple <T>, typename pop_back <std::tuple <List...>>::type>;
     };

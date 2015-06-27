@@ -8,12 +8,11 @@
 
 namespace mplex { namespace string_algorithm {
 
-    template <typename String, typename WhatString, template <typename, typename> class ComparisonPredicate = mplex::is_iequal>
-    struct find {
-        using type = typename mplex::find <typename String::type, typename WhatString::type, ComparisonPredicate>::type;
-    };
+    template <typename String, typename WhatString, typename ComparisonPredicate = mplex::is_iequal>
+    struct find : adapt <String, mplex::find, typename WhatString::type, ComparisonPredicate>
+    { };
 
-    template <typename String, typename WhatString, template <typename, typename> class ComparisonPredicate = mplex::is_iequal>
+    template <typename String, typename WhatString, typename ComparisonPredicate = mplex::is_iequal>
     using find_t = typename find <String, WhatString, ComparisonPredicate>::type;
 }
 }

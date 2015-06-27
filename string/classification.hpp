@@ -3,17 +3,19 @@
 
 #include "char.hpp"
 #include "../control/if.hpp"
-#include "../integral.hpp"
+#include "../fundamental/integral.hpp"
 
 namespace mplex {
-    template <typename Char>
     struct is_space {
-        constexpr static const bool value = false;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = false;
+        };
     };
 
     #define SPECIALIZE(WHAT, CHAR) \
     template <> \
-    struct WHAT <char_<CHAR>> { \
+    struct WHAT::apply <char_<CHAR>> { \
         constexpr static const bool value = true; \
     }
 
@@ -26,72 +28,96 @@ namespace mplex {
 
     #undef is_space_SPECIALIZE
 
-    template <typename Char>
     struct is_upper {
-        constexpr static const bool value = Char::value >= 'A' && Char::value <= 'Z';
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value >= 'A' && Char::value <= 'Z';
+        };
     };
 
-    template <typename Char>
     struct is_lower {
-        constexpr static const bool value = Char::value >= 'a' && Char::value <= 'z';
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value >= 'a' && Char::value <= 'z';
+        };
     };
 
-    template <typename Char>
     struct is_cntrl {
-        constexpr static const bool value = Char::value >= 0 && Char::value < 32;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value >= 0 && Char::value < 32;
+        };
     };
 
-    template <typename Char>
     struct is_blank {
-        constexpr static const bool value = false;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = false;
+        };
     };
     SPECIALIZE(is_blank, ' ');
     SPECIALIZE(is_blank, '\t');
 
-    template <typename Char>
     struct is_alpha {
-        constexpr static const bool value = is_upper <Char>::value || is_lower <Char>::value;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = is_upper::template apply <Char>::value || is_lower::template apply <Char>::value;
+        };
     };
 
-    template <typename Char>
     struct is_digit {
-        constexpr static const bool value = Char::value >= '0' && Char::value <= '9';
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value >= '0' && Char::value <= '9';
+        };
     };
 
-    template <typename Char>
     struct is_xdigit {
-        constexpr static const bool value =     is_digit<Char>::value
-                                            ||  (Char::value >= 'A' && Char::value <= 'f')
-                                            ||  (Char::value >= 'a' && Char::value <= 'z');
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value =     is_digit::template apply <Char>::value
+                                                ||  (Char::value >= 'A' && Char::value <= 'f')
+                                                ||  (Char::value >= 'a' && Char::value <= 'z');
+        };
     };
 
-    template <typename Char>
     struct is_alnum {
-        constexpr static const bool value =     is_digit<Char>::value
-                                            ||  is_alpha<Char>::value;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value =     is_digit::template apply <Char>::value
+                                                ||  is_alpha::template apply <Char>::value;
+        };
     };
 
-    template <typename Char>
     struct is_punct {
-        constexpr static const bool value =     Char::value >= '!' && Char::value <= '/' // 0x21 - 0x2F
-                                            ||  Char::value >= ':' && Char::value <= '@' // 0x3A - 0x40
-                                            ||  Char::value >= '[' && Char::value <= '`' // 0x5B - 0x60
-                                            ||  Char::value >= '{' && Char::value <= '~'; // 0x7B - 0x7E
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value =     Char::value >= '!' && Char::value <= '/' // 0x21 - 0x2F
+                                                ||  Char::value >= ':' && Char::value <= '@' // 0x3A - 0x40
+                                                ||  Char::value >= '[' && Char::value <= '`' // 0x5B - 0x60
+                                                ||  Char::value >= '{' && Char::value <= '~'; // 0x7B - 0x7E
+        };
     };
 
-    template <typename Char>
     struct is_graph {
-        constexpr static const bool value = Char::value >= 0x21 && Char::value <= 0x7E;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value >= 0x21 && Char::value <= 0x7E;
+        };
     };
 
-    template <typename Char>
     struct is_print {
-        constexpr static const bool value = Char::value >= 0x20 && Char::value <= 0x7E;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value >= 0x20 && Char::value <= 0x7E;
+        };
     };
 
-    template <typename Char>
     struct is_zero {
-        constexpr static const bool value = Char::value == 0;
+        template <typename Char>
+        struct apply {
+            constexpr static const bool value = Char::value == 0;
+        };
     };
 
     #undef SPECIALIZE

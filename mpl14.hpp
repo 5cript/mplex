@@ -3,6 +3,10 @@
 
 // this file is for convenience, but actually I personally do not recommend to use it
 
+// fundamental
+#include "fundamental/integral.hpp"
+#include "fundamental/bind.hpp"
+
 // sequences / tuples
 #include "tuple/apply.hpp"
 #include "tuple/front.hpp"
@@ -36,9 +40,6 @@
 #include "string/string.hpp"
 #include "string/trim.hpp"
 #include "string/inline_string.hpp"
-
-// algebra
-#include "integral.hpp"
 
 // date time
 #include "time/time.hpp"

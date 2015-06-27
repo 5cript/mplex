@@ -2,12 +2,16 @@
 #define MPL14_TUPLE_FIND_NEXT_HPP_INCLUDED
 
 #include "find.hpp"
+#include "erase.hpp"
 
 namespace mplex {
-    template <typename Tuple, typename What, typename LastMatch, template <typename, typename> class ComparisonPredicate = std::is_same>
+    template <typename Tuple, typename What, typename LastMatch, typename ComparisonPredicate = std::is_same>
     struct find_next {
-
+        using type = find_t <erase_t <Tuple, unsigned_<0>, LastMatch>, What, ComparisonPredicate>;
     };
+
+    template <typename Tuple, typename What, typename LastMatch, typename ComparisonPredicate = std::is_same>
+    using find_next_t = typename find_next <Tuple, What, LastMatch, ComparisonPredicate>::type;
 }
 
 #endif // FIND_NEXT_HPP_INCLUDED
