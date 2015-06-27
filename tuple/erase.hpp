@@ -1,35 +1,40 @@
-#ifndef ERASE_HPP_INCLUDED
-#define ERASE_HPP_INCLUDED
+#ifndef MPL14_TUPLE_ERASE_HPP_INCLUDED
+#define MPL14_TUPLE_ERASE_HPP_INCLUDED
 
 #include "concat.hpp"
 #include "copy.hpp"
+#include "pop_front.hpp"
 
 #include <tuple>
 
 namespace mplex {
-    template <typename Tuple, unsigned From, unsigned To>
+    template <typename Tuple, typename Begin, typename End>
     struct erase
     {
-        static_assert (To <= std::tuple_size <Tuple>::value, "Out of range");
-        static_assert (From < To, "Range is malformed. end >= begin");
+        static_assert (End::value <= std::tuple_size <Tuple>::value, "Out of range");
+        static_assert (Begin::value < End::value, "Range is malformed. end >= begin");
 
-        using type = concat_t <copy_t <Tuple, 0, From>, typename erase<typename erase <Tuple, 0, From>::type, 0, To>::type>;
+        using type = concat_t <copy_t <Tuple, unsigned_<0u>, Begin>, typename erase<typename erase <Tuple, unsigned_<0>, Begin>::type, unsigned_<0>, unsigned_ <End::value - Begin::value>>::type>;
     };
 
-    template <unsigned To, typename T, typename ... List>
-    struct erase <std::tuple <T, List...>, 0, To>
+    template <typename Tuple, typename End>
+    struct erase <Tuple, unsigned_<0>, End>
     {
-        using type = typename erase <std::tuple <List...>, 0, To - 1>::type;
+        using type = typename erase <pop_front_t <Tuple>, unsigned_<0>, unsigned_ <End::value - 1>>::type;
     };
 
     template <typename Tuple>
-    struct erase <Tuple, 0, 0>
+    struct erase <Tuple, unsigned_<0>, unsigned_<0>>
     {
         using type = Tuple;
     };
 
-    template <typename Tuple, unsigned From, unsigned To>
-    using erase_t = typename erase <Tuple, From, To>::type;
+    template <typename Tuple, typename Begin, typename End>
+    using erase_t = typename erase <Tuple, Begin, End>::type;
+
+    template <typename Tuple, unsigned Begin, unsigned End>
+
+    using erase_vt = typename erase <Tuple, unsigned_<Begin>, unsigned_<End>>::type;
 }
 
-#endif // ERASE_HPP_INCLUDED
+#endif // MPL14_TUPLE_ERASE_HPP_INCLUDED
