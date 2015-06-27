@@ -2,6 +2,7 @@
 #define MPL14_STRING_CHAR_HPP_INCLUDED
 
 #include "../integral.hpp"
+#include "../config.hpp"
 
 namespace mplex
 {
@@ -11,8 +12,8 @@ namespace mplex
     DECLARE_INTEGRAL(wchar_t);
 
 #ifdef UTF_CHAR
-    DECLARE_INTEGRAL(char16_t)
-    DECLARE_INTEGRAL(char32_t)
+    DECLARE_INTEGRAL(char16_t);
+    DECLARE_INTEGRAL(char32_t);
 #endif
 
     template <typename Char>
@@ -30,6 +31,12 @@ namespace mplex
               char_<(char)((int)Char::value - (int)'A' + (int)'a')>,
               char_<Char::value>>;
     };
+
+    template <typename Char>
+    using to_lower_t = typename to_lower<Char>::type;
+
+    template <typename Char>
+    using to_upper_t = typename to_upper<Char>::type;
 }
 
 #endif // MPL14_STRING_CHAR_HPP_INCLUDED

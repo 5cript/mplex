@@ -88,6 +88,11 @@ namespace mplex {
     struct is_print {
         constexpr static const bool value = Char::value >= 0x20 && Char::value <= 0x7E;
     };
+
+    template <typename Char>
+    struct is_zero {
+        constexpr static const bool value = Char::value == 0;
+    };
 }
 
 #endif // MPL14_STRING_CHAR_TRAITS_HPP_INCLUDED
