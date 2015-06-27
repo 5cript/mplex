@@ -24,7 +24,9 @@ namespace mplex
     DECLARE_INTEGRAL(long);
     DECLARE_INTEGRAL_N(long long, long_long);
     DECLARE_INTEGRAL(short);
+    DECLARE_INTEGRAL(unsigned);
 
+    DECLARE_INTEGRAL_N(unsigned int, unsigned_int);
     DECLARE_INTEGRAL_N(unsigned long, unsigned_long);
     DECLARE_INTEGRAL_N(unsigned long long, unsigned_long_long);
     DECLARE_INTEGRAL_N(unsigned short, unsigned_short);
