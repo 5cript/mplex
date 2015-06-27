@@ -93,6 +93,8 @@ namespace mplex {
     struct is_zero {
         constexpr static const bool value = Char::value == 0;
     };
+
+    #undef SPECIALIZE
 }
 
 #endif // MPL14_STRING_CHAR_TRAITS_HPP_INCLUDED
