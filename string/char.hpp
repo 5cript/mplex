@@ -20,9 +20,9 @@ namespace mplex
         template <typename Char>
         struct apply {
             using type =
-            if_t <Char::value >= 'a' && Char::value <= 'z',
-                  char_<(char)((int)Char::value - (int)'a' + (int)'A')>,
-                  char_<Char::value>>;
+            if_vt <Char::value >= 'a' && Char::value <= 'z',
+                   char_<(char)((int)Char::value - (int)'a' + (int)'A')>,
+                   char_<Char::value>>;
         };
     };
 
@@ -30,9 +30,9 @@ namespace mplex
         template <typename Char>
         struct apply {
             using type =
-            if_t <Char::value >= 'A' && Char::value <= 'Z',
-                  char_<(char)((int)Char::value - (int)'A' + (int)'a')>,
-                  char_<Char::value>>;
+            if_vt <Char::value >= 'A' && Char::value <= 'Z',
+                   char_<(char)((int)Char::value - (int)'A' + (int)'a')>,
+                   char_<Char::value>>;
         };
     };
 }
