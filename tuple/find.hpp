@@ -46,6 +46,7 @@ namespace mplex {
             constexpr static const bool found = SWPos::value == std::tuple_size <What>::value;
             constexpr static const int where = if_t <found, Where, int_<-1>>::value;
             using where_t = int_<where>;
+            constexpr static const int value = where;
         };
     };
 
