@@ -54,4 +54,7 @@
 // advanced
 #include "advanced/tokenizer.hpp"
 
+// type_print
+#include "type_print/type_print.hpp"
+
 #endif // MPL14_HPP_INCLUDED
