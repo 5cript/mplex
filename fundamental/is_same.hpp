@@ -9,6 +9,16 @@ namespace mplex {
         template <typename T, typename U>
         struct apply {
             using type = bool_ <std::is_same<T, U>::value>;
+            constexpr static const bool value = type::value;
+        };
+    };
+
+    template <typename T>
+    struct is_T {
+        template <typename U>
+        struct apply {
+            using type = bool_ <std::is_same<T, U>::value>;
+            constexpr static const bool value = type::value;
         };
     };
 }
