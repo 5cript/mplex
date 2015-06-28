@@ -12,6 +12,7 @@ namespace mplex {
         constexpr static const bool found = Predicate::template apply <T>::value;
 
         constexpr static const int value = find_if <std::tuple <List...>, Predicate, int_ <Pos::value + 1>, found>::value;
+        using type = int_ <value>;
     };
 
     template <typename Tuple, typename Predicate, typename Pos>
