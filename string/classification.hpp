@@ -10,6 +10,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = false;
+            using type = bool_ <value>;
         };
     };
 
@@ -32,6 +33,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value >= 'A' && Char::value <= 'Z';
+            using type = bool_ <value>;
         };
     };
 
@@ -39,6 +41,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value >= 'a' && Char::value <= 'z';
+            using type = bool_ <value>;
         };
     };
 
@@ -46,6 +49,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value >= 0 && Char::value < 32;
+            using type = bool_ <value>;
         };
     };
 
@@ -53,6 +57,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = false;
+            using type = bool_ <value>;
         };
     };
     SPECIALIZE(is_blank, ' ');
@@ -62,6 +67,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = is_upper::template apply <Char>::value || is_lower::template apply <Char>::value;
+            using type = bool_ <value>;
         };
     };
 
@@ -69,6 +75,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value >= '0' && Char::value <= '9';
+            using type = bool_ <value>;
         };
     };
 
@@ -78,6 +85,7 @@ namespace mplex {
             constexpr static const bool value =     is_digit::template apply <Char>::value
                                                 ||  (Char::value >= 'A' && Char::value <= 'f')
                                                 ||  (Char::value >= 'a' && Char::value <= 'z');
+            using type = bool_ <value>;
         };
     };
 
@@ -86,6 +94,7 @@ namespace mplex {
         struct apply {
             constexpr static const bool value =     is_digit::template apply <Char>::value
                                                 ||  is_alpha::template apply <Char>::value;
+            using type = bool_ <value>;
         };
     };
 
@@ -96,6 +105,7 @@ namespace mplex {
                                                 ||  Char::value >= ':' && Char::value <= '@' // 0x3A - 0x40
                                                 ||  Char::value >= '[' && Char::value <= '`' // 0x5B - 0x60
                                                 ||  Char::value >= '{' && Char::value <= '~'; // 0x7B - 0x7E
+            using type = bool_ <value>;
         };
     };
 
@@ -103,6 +113,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value >= 0x21 && Char::value <= 0x7E;
+            using type = bool_ <value>;
         };
     };
 
@@ -110,6 +121,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value >= 0x20 && Char::value <= 0x7E;
+            using type = bool_ <value>;
         };
     };
 
@@ -117,6 +129,7 @@ namespace mplex {
         template <typename Char>
         struct apply {
             constexpr static const bool value = Char::value == 0;
+            using type = bool_ <value>;
         };
     };
 
