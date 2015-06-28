@@ -5,12 +5,30 @@
 #include "../tuple/apply.hpp"
 #include "../control/if.hpp"
 
+#include "../tuple/front.hpp"
+#include "../tuple/back.hpp"
+#include "../tuple/pop_front.hpp"
+#include "../tuple/pop_back.hpp"
+#include "../tuple/push_back.hpp"
+#include "../tuple/push_front.hpp"
+
 #include <type_traits>
 #include <tuple>
 #include <iosfwd>
 
 namespace mplex
 {
+    template <char ... List>
+    struct string;
+
+    template <typename... CharArray>
+    struct __string {
+        using type = string <CharArray::value...>;
+    };
+
+    template <typename... CharArray>
+    using translate = typename __string <CharArray...>::type;
+
     template <char ... List>
     struct string
     {
@@ -35,18 +53,44 @@ namespace mplex
                 List..., '\0'
         };
 
+        template <typename Char>
+        struct push_front {
+            using type = apply_t <push_front_t <type, Char>, translate>;
+        };
+        template <typename Char> using push_front_t = typename push_front <Char>::type;
+
+        template <typename Char>
+        struct push_back {
+            using type = apply_t <push_back_t <type, Char>, translate>;
+        };
+        template <typename Char> using push_back_t = typename push_back <Char>::type;
+
+        struct pop_front {
+            using type = apply_t <pop_front_t <type>, translate>;
+        };
+        using pop_front_t = typename pop_front::type;
+
+        struct pop_back {
+            using type = apply_t <pop_back_t <type>, translate>;
+        };
+        using pop_back_t = typename pop_back::type;
+
+        struct front {
+            using type = front_t <type>;
+        };
+        using front_t = typename front::type;
+
+        struct back {
+            using type = back_t <type>;
+        };
+        using back_t = typename back::type;
+
+        using empty = bool_ <size == 0>;
+
         constexpr static const size_type npos = -1;
     };
     template <char ... List>
     constexpr const char string <List...>::c_str[];
-
-    template <typename... CharArray>
-    struct __string {
-        using type = string <CharArray::value...>;
-    };
-
-    template <typename... CharArray>
-    using translate = typename __string <CharArray...>::type;
 
     template <typename GlueString>
     struct print_string {
