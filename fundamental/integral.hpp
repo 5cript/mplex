@@ -1,15 +1,13 @@
 #ifndef MPL14_FUNDAMENTAL_INTEGRAL_HPP_INCLUDED
 #define MPL14_FUNDAMENTAL_INTEGRAL_HPP_INCLUDED
 
+#include <type_traits>
 #include <cstdint>
 
 namespace mplex
 {
     template <typename T, T Value>
-    struct integral
-    {
-        constexpr const static T value = Value;
-    };
+    using integral = std::integral_constant <T, Value>;
 
 #define DECLARE_INTEGRAL(TYPE) \
     template <TYPE V> \
@@ -40,6 +38,9 @@ namespace mplex
     DECLARE_INTEGRAL(int16_t);
     DECLARE_INTEGRAL(int32_t);
     DECLARE_INTEGRAL(int64_t);
+
+    using true_ = bool_ <true>;
+    using false_ = bool_ <false>;
 }
 
 #endif // MPL14_FUNDAMENTAL_INTEGRAL_HPP_INCLUDED
