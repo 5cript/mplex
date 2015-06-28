@@ -7,6 +7,7 @@ namespace mplex {
     template <typename Lhs, typename Rhs>
     struct min {
         using type = if_vt <(Lhs::value<Rhs::value), Lhs, Rhs>;
+        constexpr static const typename type::value_type value = type::value;
     };
 }
 
