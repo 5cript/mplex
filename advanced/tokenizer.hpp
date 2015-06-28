@@ -47,15 +47,15 @@ namespace mplex {
         };
     }
 
-    template <typename String, typename Keywords, typename CaseSensitive = true_>
+    template <typename String, typename SwitchBase, typename CaseSensitive = true_>
     struct tokenize {
-        using sbase = typename apply_t <Keywords, internal::make_keyword_table>::type;
+        //using sbase = typename apply_t <Keywords, internal::make_keyword_table>::type;
 
-        using type = map_types_t <make_lexemes_t <String>, sbase, CaseSensitive>;
+        using type = map_types_t <make_lexemes_t <String>, SwitchBase, CaseSensitive>;
     };
 
-    template <typename String, typename Keywords, typename CaseSensitive = true_>
-    using tokenize_t = typename tokenize <String, Keywords, CaseSensitive>::type;
+    template <typename String, typename SwitchBase, typename CaseSensitive = true_>
+    using tokenize_t = typename tokenize <String, SwitchBase, CaseSensitive>::type;
 }
 
 #endif // MPL14_ADVANCED_TOKENIZER_HPP_INCLUDED
