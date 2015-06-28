@@ -11,12 +11,16 @@ namespace mplex
      */
     template <typename Tuple>
     struct front {
+        static_assert (std::tuple_size <Tuple>::value > 0, "Tuple must not be empty");
+
         using type = typename std::tuple_element <0, Tuple>::type;
     };
 
-    template <>
-    struct front <std::tuple <>> {
-        // this is an invalid request
+    struct front_a {
+        template <typename Tuple>
+        struct apply {
+            using type = typename front <Tuple>::type;
+        };
     };
 
     template <typename Tuple>
