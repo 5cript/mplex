@@ -13,40 +13,6 @@
 #include "type_mapper.hpp"
 
 namespace mplex {
-    namespace embedded_language {
-        template <typename T>
-        struct unclassified_token {
-            using type = T;
-        };
-
-        template <typename T>
-        struct keyword {
-            using id = T;
-        };
-    }
-
-    namespace internal {
-        struct make_unclassified_token {
-            template <typename T>
-            struct apply {
-                using type = embedded_language::unclassified_token <T>;
-            };
-        };
-
-        struct make_keyword {
-            template <typename T>
-            struct apply {
-                using type = embedded_language::keyword<T>;
-            };
-        };
-
-        template <typename... Keywords>
-        struct make_keyword_table {
-            using type = switch_base <default_ <make_unclassified_token>,
-                                      case_ <Keywords, make_keyword>...>;
-        };
-    }
-
     template <typename String, typename SwitchBase, typename CaseSensitive = true_>
     struct tokenize {
         //using sbase = typename apply_t <Keywords, internal::make_keyword_table>::type;
