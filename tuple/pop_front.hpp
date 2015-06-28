@@ -18,7 +18,7 @@ namespace mplex
 
     template <>
     struct pop_front <std::tuple <>> {
-    using type = std::tuple <>;
+        using type = std::tuple <>;
     };
 
     template <typename TupleT>
