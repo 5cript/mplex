@@ -11,11 +11,11 @@ namespace mplex
 
 #define DECLARE_INTEGRAL(TYPE) \
     template <TYPE V> \
-    struct TYPE ## _ : public mplex::integral<TYPE, V> {}
+    using TYPE ## _ = mplex::integral <TYPE, V>
 
 #define DECLARE_INTEGRAL_N(TYPE, NAME) \
     template <TYPE V> \
-    struct NAME ## _ : public mplex::integral<TYPE, V> {}
+    using NAME ## _ = mplex::integral <TYPE, V>
 
     DECLARE_INTEGRAL(bool);
     DECLARE_INTEGRAL(int);
