@@ -14,7 +14,7 @@ namespace mplex {
     };
 
     template <typename T>
-    struct is_T {
+    struct is_type {
         template <typename U>
         struct apply {
             using type = bool_ <std::is_same<T, U>::value>;
