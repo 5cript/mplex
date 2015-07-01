@@ -5,10 +5,14 @@
 
 // fundamental
 #include "fundamental/integral.hpp"
-#include "fundamental/bind.hpp"
 #include "fundamental/for_each_exec.h"
 #include "fundamental/identity.hpp"
 #include "fundamental/is_same.hpp"
+
+// functional
+#include "functional/functor.hpp"
+#include "functional/bind.hpp"
+#include "functional/compose.hpp"
 
 // sequences / tuples
 #include "tuple/apply.hpp"
