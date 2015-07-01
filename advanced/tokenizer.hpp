@@ -9,7 +9,8 @@
 #include "../string/inline_string.hpp"
 #include "../string/compare.hpp"
 
-#include "../fundamental/bind.hpp"
+#include "../functional/bind.hpp"
+
 #include "../fundamental/eval_if.hpp"
 #include "../fundamental/integral.hpp"
 
@@ -25,6 +26,7 @@
 
 #include "lexer.hpp"
 #include "type_mapper.hpp"
+#include "token_classification.hpp"
 
 namespace mplex {
     template <typename String, typename SwitchBase, typename CaseSensitive = true_>
@@ -73,33 +75,6 @@ namespace mplex {
     };
 
     namespace internal {
-        struct next_is_operator_token
-        {
-            template <typename Tuple, typename OperatorTokens, typename ComparisonPredicate>
-            struct apply {};
-        };
-
-        template <typename Tuple, typename ComparisonPredicate, typename T, typename... List>
-        struct next_is_operator_token::apply <Tuple, std::tuple <T, List...>, ComparisonPredicate> {
-            using slice = typename copy <Tuple, int_ <0>, min <int_ <T::size>, std::tuple_size <Tuple>>>::type;
-            using slice_str = apply_t <slice, translate>;
-
-            using equal = typename equals<ComparisonPredicate>::template apply <T, slice_str>::type;
-
-            using type =
-            lazy_if_t <equal,
-                       then_ <bool_ <true>>,
-                       else_ <next_is_operator_token, Tuple, std::tuple <List...>, ComparisonPredicate>
-            >;
-
-            constexpr static const bool value = type::value;
-        };
-
-        template <typename Tuple, typename ComparisonPredicate>
-        struct next_is_operator_token::apply <Tuple, std::tuple <>, ComparisonPredicate> {
-            using type = bool_ <false>;
-            constexpr static const bool value = type::value;
-        };
 
         template <typename Tuple, typename TokenizationOptions = SQL_Tokenization>
         struct tokenize_advanced_impl
