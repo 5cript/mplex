@@ -101,10 +101,10 @@ namespace mplex {
     struct is_punct {
         template <typename Char>
         struct apply {
-            constexpr static const bool value =     Char::value >= '!' && Char::value <= '/' // 0x21 - 0x2F
-                                                ||  Char::value >= ':' && Char::value <= '@' // 0x3A - 0x40
-                                                ||  Char::value >= '[' && Char::value <= '`' // 0x5B - 0x60
-                                                ||  Char::value >= '{' && Char::value <= '~'; // 0x7B - 0x7E
+            constexpr static const bool value =     (Char::value >= '!' && Char::value <= '/') // 0x21 - 0x2F
+                                                ||  (Char::value >= ':' && Char::value <= '@') // 0x3A - 0x40
+                                                ||  (Char::value >= '[' && Char::value <= '`') // 0x5B - 0x60
+                                                ||  (Char::value >= '{' && Char::value <= '~'); // 0x7B - 0x7E
             using type = bool_ <value>;
         };
     };
