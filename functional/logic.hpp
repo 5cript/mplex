@@ -34,28 +34,28 @@ namespace mplex {
         struct gt_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = bool_ <Lhs::type::value > Rhs::type::value>;
+                using type = bool_ <(Lhs::type::value > Rhs::type::value)>;
             };
         };
 
         struct lt_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = bool_ <Lhs::type::value < Rhs::type::value>;
+                using type = bool_ <(Lhs::type::value < Rhs::type::value)>;
             };
         };
 
         struct gte_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = bool_ <Lhs::type::value >= Rhs::type::value>;
+                using type = bool_ <(Lhs::type::value >= Rhs::type::value)>;
             };
         };
 
         struct lte_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = bool_ <Lhs::type::value <= Rhs::type::value>;
+                using type = bool_ <(Lhs::type::value <= Rhs::type::value)>;
             };
         };
 
