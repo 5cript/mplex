@@ -11,7 +11,7 @@ namespace mplex {
         struct or_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = integral <std::make_unsigned <integral_t>::type, Lhs::type::value | Rhs::type::value>;
+                using type = integral <typename std::make_unsigned <integral_t>::type, Lhs::type::value | Rhs::type::value>;
             };
         };
 
@@ -19,7 +19,7 @@ namespace mplex {
         struct and_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = integral <std::make_unsigned <integral_t>::type, Lhs::type::value & Rhs::type::value>;
+                using type = integral <typename std::make_unsigned <integral_t>::type, Lhs::type::value & Rhs::type::value>;
             };
         };
 
@@ -27,7 +27,7 @@ namespace mplex {
         struct xor_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = integral <std::make_unsigned <integral_t>::type, Lhs::type::value ^ Rhs::type::value>;
+                using type = integral <typename std::make_unsigned <integral_t>::type, Lhs::type::value ^ Rhs::type::value>;
             };
         };
 
@@ -35,7 +35,7 @@ namespace mplex {
         struct lshift_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = integral <std::make_unsigned <integral_t>::type, Lhs::type::value << Rhs::type::value>;
+                using type = integral <typename std::make_unsigned <integral_t>::type, (Lhs::type::value << Rhs::type::value)>;
             };
         };
 
@@ -43,7 +43,7 @@ namespace mplex {
         struct rshift_ {
             template <typename Lhs, typename Rhs>
             struct apply {
-                using type = integral <std::make_unsigned <integral_t>::type, Lhs::type::value >> Rhs::type::value>;
+                using type = integral <typename std::make_unsigned <integral_t>::type, (Lhs::type::value >> Rhs::type::value)>;
             };
         };
     }
