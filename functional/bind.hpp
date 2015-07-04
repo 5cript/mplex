@@ -15,6 +15,17 @@ namespace mplex {
         template <typename... List>
         using apply = Expression <Parameters..., List...>;
     };
+
+    template <typename Function, typename... Parameters>
+    struct functor_bind {
+        template <typename... List>
+        using apply = typename Function::template apply <Parameters..., List...>;
+    };
+
+    template <typename Function, typename... Parameters>
+    struct functor_bind_all {
+        using apply = typename Function::template apply <Parameters...>;
+    };
 }
 
 #endif // MPL14_FUNCTIONAL_BIND_HPP_INCLUDED
