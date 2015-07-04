@@ -4,8 +4,9 @@
 // this file is for convenience, but actually I personally do not recommend to use it
 
 // fundamental
+#include "fundamental/eval_if.hpp"
 #include "fundamental/integral.hpp"
-#include "fundamental/for_each_exec.h"
+#include "fundamental/for_each_exec.hpp"
 #include "fundamental/identity.hpp"
 #include "fundamental/is_same.hpp"
 
@@ -13,6 +14,9 @@
 #include "functional/functor.hpp"
 #include "functional/bind.hpp"
 #include "functional/compose.hpp"
+#include "functional/bitwise.hpp"
+#include "functional/arithmetic.hpp"
+#include "functional/logic.hpp"
 
 // sequences / tuples
 #include "tuple/apply.hpp"
@@ -34,6 +38,7 @@
 #include "tuple/replace.hpp"
 #include "tuple/find.hpp"
 #include "tuple/find_if.hpp"
+#include "tuple/make_tuple.hpp"
 
 // control
 #include "control/if.hpp"
