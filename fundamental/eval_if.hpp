@@ -1,6 +1,8 @@
 #ifndef MPL14_FUNDAMENTAL_EVAL_IF_HPP_INCLUDED
 #define MPL14_FUNDAMENTAL_EVAL_IF_HPP_INCLUDED
 
+#include "integral.hpp"
+
 namespace mplex {
 
     template <typename Condition, typename Fallback, typename Function, typename... Parameters>
