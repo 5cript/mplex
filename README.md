@@ -1,4 +1,4 @@
-# mpl14
+# mplex
 A template meta programming library for tuples and strings.
 
 ##**Warning: This is still in very very early development and not tested through thoroughly yet**
