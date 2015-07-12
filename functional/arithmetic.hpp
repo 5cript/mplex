@@ -55,7 +55,7 @@ namespace mplex {
         struct inc_ {
             template <typename Lhs>
             struct apply {
-                using type = integral <integral_t, Lhs::type::value++>;
+                using type = integral <integral_t, Lhs::type::value+1>;
             };
         };
 
@@ -63,7 +63,7 @@ namespace mplex {
         struct dec_ {
             template <typename Lhs>
             struct apply {
-                using type = integral <integral_t, Lhs::type::value-->;
+                using type = integral <integral_t, Lhs::type::value-1>;
             };
         };
     }

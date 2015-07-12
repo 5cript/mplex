@@ -32,7 +32,7 @@ namespace mplex
     template <char ... List>
     struct string
     {
-        using size_type = std::make_signed_t <std::size_t>;
+        using size_type = std::make_signed <std::size_t>::type;
 
         using type = std::tuple <char_ <List>...>;
 

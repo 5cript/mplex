@@ -11,7 +11,7 @@
 #include "fundamental/is_same.hpp"
 
 // functional
-#include "functional/functor.hpp"
+// #include "functional/functor.hpp"
 #include "functional/bind.hpp"
 #include "functional/compose.hpp"
 #include "functional/bitwise.hpp"
