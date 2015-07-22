@@ -1,23 +1,47 @@
 #ifndef MPL14_FUNCTIONAL_COMPOSE_HPP_INCLUDED
 #define MPL14_FUNCTIONAL_COMPOSE_HPP_INCLUDED
 
-#include "../fundamental/identity.hpp"
+#include "placeholder.hpp"
+
+#include "../fundamental/integral.hpp"
 
 #include "../control/if.hpp"
-
-#include "../tuple/tuple_element.hpp"
-#include "../tuple/push_back.hpp"
-#include "../tuple/push_front.hpp"
-#include "../tuple/make_tuple.hpp"
-#include "../tuple/apply.hpp"
-
-#include "../algorithm/merge.hpp"
-#include "../algorithm/count.hpp"
+#include "../control/bind.hpp"
 
 #include <tuple>
 
 namespace mplex {
+    template <typename T>
+    struct is_compound_expression;
 
+    template <typename Functor, typename... Params>
+    struct compose_impl {
+        using type = Functor;
+        using params = std::tuple <Params>;
+
+        template <typename... Parameters>
+        struct apply {
+            using type = Functor <
+                lazy_if_t <is_compound_expression<Parameters>::type,
+                           then_ <
+                >
+        };
+    };
+
+
+    struct is_compound_expression {
+        template <typename T>
+        struct apply {
+            constexpr static const bool value = false;
+            using type = bool_<false>;
+        };
+    }
+
+    template <typename... List>
+    struct is_compound_expression::apply <compose <List...> > {
+        constexpr static const bool value = true;
+        using type = bool_<true>;
+    };
 }
 
 #endif // MPL14_FUNCTIONAL_COMPOSE_HPP_INCLUDED
