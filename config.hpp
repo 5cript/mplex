@@ -17,5 +17,8 @@
 #   error "Unknown compiler"
 #endif
 
+#ifdef USE_BOOST
+#define HAS_BOOST_STRING_ALGORITHM
+#endif
 
 #endif // CONFIG_HPP_INCLUDED
