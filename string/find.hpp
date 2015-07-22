@@ -3,7 +3,7 @@
 
 #include "string.hpp"
 #include "compare.hpp"
-#include "../tuple/find.hpp"
+#include "../algorithm/find.hpp"
 #include "../tuple/apply.hpp"
 
 namespace mplex { namespace string_algorithm {
