@@ -3,7 +3,7 @@
 
 #include "string.hpp"
 #include "algorithm_adapter.hpp"
-#include "../tuple/remove_if.hpp"
+#include "../algorithm/remove_if.hpp"
 
 namespace mplex { namespace string_algorithm {
     template <typename String, typename Predicate>
