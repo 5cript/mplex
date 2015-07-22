@@ -17,9 +17,10 @@
 #include "../control/switch.hpp"
 #include "../control/if.hpp"
 
+#include "../algorithm/find.hpp"
+#include "../algorithm/find_next.hpp"
+
 #include "../tuple/apply.hpp"
-#include "../tuple/find.hpp"
-#include "../tuple/find_next.hpp"
 #include "../tuple/copy.hpp"
 
 #include "../math/min.hpp"
