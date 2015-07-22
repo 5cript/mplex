@@ -2,6 +2,7 @@
 #define MPL14_CONTROL_IF_HPP_INCLUDED
 
 #include "../fundamental/eval_if.hpp"
+#include "../fundamental/integral.hpp"
 
 namespace mplex
 {
@@ -15,6 +16,13 @@ namespace mplex
     template <typename TrueT,
               typename FalseT>
     struct if_ <bool_ <false>, TrueT, FalseT> {
+        using type = FalseT;
+    };
+
+    template <typename IntegralT,
+              typename TrueT,
+              typename FalseT>
+    struct if_ <integral <IntegralT, 0>, TrueT, FalseT> {
         using type = FalseT;
     };
 
@@ -49,6 +57,11 @@ namespace mplex
 
     template <typename Then, typename Else>
     struct lazy_if <false_, Then, Else> {
+        using type = typename Else::template apply <false_>::type;
+    };
+
+    template <typename IntegralT, typename Then, typename Else>
+    struct lazy_if <integral <IntegralT, 0>, Then, Else> {
         using type = typename Else::template apply <false_>::type;
     };
 
