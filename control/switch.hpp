@@ -1,12 +1,16 @@
 #ifndef MPL14_CONTROL_SWITCH_HPP_INCLUDED
 #define MPL14_CONTROL_SWITCH_HPP_INCLUDED
 
-#include "../fundamental/is_same.hpp"
-#include "../tuple/find.hpp"
-#include "../fundamental/eval_if.hpp"
-#include "../tuple/tuple_element.hpp"
-#include "if.hpp"
 #include "../string/compare.hpp"
+
+#include "../fundamental/is_same.hpp"
+#include "../fundamental/eval_if.hpp"
+
+#include "../tuple/tuple_element.hpp"
+
+#include "../algorithm/find.hpp"
+
+#include "if.hpp"
 
 /*  Use example:
 
