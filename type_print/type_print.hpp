@@ -4,7 +4,13 @@
 #include "../config.hpp"
 #include "../string/string.hpp"
 #include "../fundamental/for_each_exec.hpp"
+
+#ifdef HAS_BOOST_STRING_ALGORITHM
+#include <boost/algorithm/string/replace.hpp>
+#endif
+
 #include <iostream>
+#include <sstream>
 
 #if defined(CLANG) || defined(GCC)
 #include <typeinfo>
@@ -87,6 +93,67 @@ namespace mplex {
         internal::print_tuple_impl <Glue>::template apply <Tuple>::execute(stream);
         return stream;
     }
+
+    // WARNING! THIS MAKE THE OUTPUT LESS CORRECT, BUT MORE READABLE
+    #ifdef HAS_BOOST_STRING_ALGORITHM
+    std::string declutter_mplex_type_name (std::string const& typenom) {
+        std::string result = typenom;
+
+        auto replace = [&](std::string const& what, std::string const& with) {
+            boost::ireplace_all (result, what, with);
+        };
+
+        replace ("std::integral_constant<int, ", "int_<");
+        replace ("std::integral_constant<long, ", "long_<");
+        replace ("std::integral_constant<short, ", "short_<");
+        replace ("std::integral_constant<unsigned, ", "unsigned_<");
+        replace ("std::integral_constant<unsigned int, ", "unsigned_<");
+        replace ("std::integral_constant<long long, ", "long_long_<");
+        replace ("std::integral_constant<unsigned long long, ", "unsigned_long_long_<");
+        replace ("std::integral_constant<char, ", "char_<");
+        replace ("std::integral_constant<unsigned char, ", "unsigned_char_<");
+        replace ("std::integral_constant<bool, ", "bool_<");
+
+        // placeholders
+        replace ("mplex::placeholders::_<1u>", "_1");
+        replace ("mplex::placeholders::_<2u>", "_2");
+        replace ("mplex::placeholders::_<3u>", "_3");
+        replace ("mplex::placeholders::_<4u>", "_4");
+        replace ("mplex::placeholders::_<5u>", "_5");
+        replace ("mplex::placeholders::_<6u>", "_6");
+        replace ("mplex::placeholders::_<7u>", "_7");
+        replace ("mplex::placeholders::_<8u>", "_8");
+        replace ("mplex::placeholders::_<9u>", "_9");
+        replace ("mplex::placeholders::_<10u>", "_10");
+        replace ("mplex::placeholders::_<11u>", "_11");
+        replace ("mplex::placeholders::_<12u>", "_12");
+        replace ("mplex::placeholders::_<13u>", "_13");
+        replace ("mplex::placeholders::_<14u>", "_14");
+        replace ("mplex::placeholders::_<15u>", "_15");
+        replace ("mplex::placeholders::_<16u>", "_16");
+        replace ("mplex::placeholders::_<17u>", "_17");
+        replace ("mplex::placeholders::_<18u>", "_18");
+        replace ("mplex::placeholders::_<19u>", "_19");
+        replace ("mplex::placeholders::_<20u>", "_20");
+
+        replace (" >", ">");
+
+
+        replace ("mplex::internal", "intern");
+        replace ("std::tuple", "tuple");
+
+        return result;
+    }
+
+    template <typename T>
+    inline std::ostream& print_single_decluttered (std::ostream& stream = std::cout) {
+        std::stringstream sstr;
+        stream_demangled<T>(sstr);
+        stream << declutter_mplex_type_name(sstr.str());
+        return stream;
+    }
+
+    #endif
 }
 
 
