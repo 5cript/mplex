@@ -138,6 +138,8 @@ namespace mplex {
 
         replace (" >", ">");
 
+        replace ("mplex::", "");
+
 
         replace ("mplex::internal", "intern");
         replace ("std::tuple", "tuple");
