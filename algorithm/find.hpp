@@ -1,5 +1,5 @@
-#ifndef MPL14_TUPLE_FIND_HPP_INCLUDED
-#define MPL14_TUPLE_FIND_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_FIND_HPP_INCLUDED
+#define MPLEX_ALGORITHM_FIND_HPP_INCLUDED
 
 #include "../control/if.hpp"
 #include "../fundamental/integral.hpp"

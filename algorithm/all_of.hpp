@@ -1,8 +1,8 @@
-#ifndef MPL14_TUPLE_ALL_OF_HPP_INCLUDED
-#define MPL14_TUPLE_ALL_OF_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_ALL_OF_HPP_INCLUDED
+#define MPLEX_ALGORITHM_ALL_OF_HPP_INCLUDED
 
-#include <tuple>
 #include "../fundamental/integral.hpp"
+#include <tuple>
 
 namespace mplex
 {

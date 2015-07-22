@@ -1,7 +1,7 @@
-#ifndef REPLACE_HPP_INCLUDED
-#define REPLACE_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_REPLACE_HPP_INCLUDED
+#define MPLEX_ALGORITHM_REPLACE_HPP_INCLUDED
 
-#include "push_back.hpp"
+#include "../tuple/push_back.hpp"
 
 namespace mplex {
     template <typename Tuple, typename Predicate>

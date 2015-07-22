@@ -1,10 +1,10 @@
-#ifndef MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
-#define MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_RANDOM_SHUFFLE_HPP_INCLUDED
+#define MPLEX_ALGORITHM_RANDOM_SHUFFLE_HPP_INCLUDED
 
 #include "../random/linear_congruential_engine.hpp"
 #include "../random/uniform_int_distribution.hpp"
 #include "../control/if.hpp"
-#include "element_swap.hpp"
+#include "../tuple/element_swap.hpp"
 
 #include <tuple>
 

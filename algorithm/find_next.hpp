@@ -1,8 +1,8 @@
-#ifndef MPL14_TUPLE_FIND_NEXT_HPP_INCLUDED
-#define MPL14_TUPLE_FIND_NEXT_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_FIND_NEXT_HPP_INCLUDED
+#define MPLEX_ALGORITHM_FIND_NEXT_HPP_INCLUDED
 
 #include "find.hpp"
-#include "erase.hpp"
+#include "../tuple/erase.hpp"
 #include "../fundamental/is_same.hpp"
 
 namespace mplex {

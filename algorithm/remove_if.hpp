@@ -1,8 +1,8 @@
-#ifndef MPL14_TUPLE_REMOVE_IF_HPP_INCLUDED
-#define MPL14_TUPLE_REMOVE_IF_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_REMOVE_IF_HPP_INCLUDED
+#define MPLEX_ALGORITHM_REMOVE_IF_HPP_INCLUDED
 
 #include "../control/if.hpp"
-#include "push_back.hpp"
+#include "../tuple/push_back.hpp"
 
 namespace mplex
 {

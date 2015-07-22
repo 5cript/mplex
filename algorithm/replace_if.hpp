@@ -1,7 +1,7 @@
-#ifndef MPL14_TUPLE_REPLACE_IF_HPP_INCLUDED
-#define MPL14_TUPLE_REPLACE_IF_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_REPLACE_IF_HPP_INCLUDED
+#define MPLEX_ALGORITHM_REPLACE_IF_HPP_INCLUDED
 
-#include "push_back.hpp"
+#include "../tuple/push_back.hpp"
 #include "../fundamental/identity.hpp"
 
 #include <tuple>
@@ -20,9 +20,9 @@ namespace mplex {
     template <typename IfPredicate, typename ReplacePredicate, typename T, typename... List>
     struct replace_if <std::tuple <T, List...>, IfPredicate, ReplacePredicate>
     {
-        using repl = if_vt <IfPredicate::template apply <T>::value,
-                            ReplacePredicate::template apply <T>,
-                            identity <T> >::type;
+        using repl = typename if_vt <IfPredicate::template apply <T>::value,
+                                     typename ReplacePredicate::template apply <T>,
+                                     identity <T> >::type;
 
         using type = push_back_t <typename replace_if <std::tuple <List...>, IfPredicate, ReplacePredicate>::type, repl>;
     };
