@@ -2,8 +2,9 @@
 #define MPL14_STRING_CASE_CONVERT_HPP_INCLUDED
 
 #include "classification.hpp"
-#include "../tuple/transform.hpp"
 #include "algorithm_adapter.hpp"
+
+#include "../algorithm/transform.hpp"
 
 namespace mplex { namespace string_algorithm {
 
