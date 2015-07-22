@@ -6,6 +6,13 @@ namespace mplex {
     struct identity {
         using type = T;
     };
+
+    struct identity_functor {
+        template <typename T>
+        struct apply {
+            using type = T;
+        };
+    };
 }
 
 #endif // IDENTITY_HPP_INCLUDED
