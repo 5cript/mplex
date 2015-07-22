@@ -2,6 +2,7 @@
 #define MPL14_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
 
 #include "../time/time.hpp"
+#include "../time/date.hpp"
 
 namespace mplex
 {
