@@ -41,4 +41,4 @@ namespace mplex
     using all_of_t = typename all_of <Tuple, Predicate>::type;
 }
 
-#endif // MPL14_TUPLE_ALL_OF_HPP_INCLUDED
+#endif // MPLEX_TUPLE_ALL_OF_HPP_INCLUDED

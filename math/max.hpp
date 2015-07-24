@@ -1,5 +1,5 @@
-#ifndef MPL14_MATH_MAX_HPP_INCLUDED
-#define MPL14_MATH_MAX_HPP_INCLUDED
+#ifndef MPLEX_MATH_MAX_HPP_INCLUDED
+#define MPLEX_MATH_MAX_HPP_INCLUDED
 
 #include "../fundamental/integral.hpp"
 #include "../control/if.hpp"
@@ -12,4 +12,4 @@ namespace mplex {
     };
 }
 
-#endif // MPL14_MATH_MAX_HPP_INCLUDED
+#endif // MPLEX_MATH_MAX_HPP_INCLUDED

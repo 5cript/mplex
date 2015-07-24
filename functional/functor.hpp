@@ -1,5 +1,5 @@
-#ifndef MPL14_FUNCTIONAL_FUNCTOR_HPP_INCLUDED
-#define MPL14_FUNCTIONAL_FUNCTOR_HPP_INCLUDED
+#ifndef MPLEX_FUNCTIONAL_FUNCTOR_HPP_INCLUDED
+#define MPLEX_FUNCTIONAL_FUNCTOR_HPP_INCLUDED
 
 #include "../tuple/apply.hpp"
 #include "../tuple/make_tuple.hpp"
@@ -40,4 +40,4 @@ namespace mplex {
     using has_arity_v = typename has_arity <T, unsigned_ <Arity> >::type;
 }
 
-#endif // MPL14_FUNCTIONAL_FUNCTOR_HPP_INCLUDED
+#endif // MPLEX_FUNCTIONAL_FUNCTOR_HPP_INCLUDED

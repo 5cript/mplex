@@ -1,5 +1,5 @@
-#ifndef MPL14_ADVANCED_LEXER_HPP_INCLUDED
-#define MPL14_ADVANCED_LEXER_HPP_INCLUDED
+#ifndef MPLEX_ADVANCED_LEXER_HPP_INCLUDED
+#define MPLEX_ADVANCED_LEXER_HPP_INCLUDED
 
 #include "../algorithm/remove_if.hpp"
 
@@ -14,4 +14,4 @@ namespace mplex {
     using make_lexemes_t = typename make_lexemes <String>::type;
 }
 
-#endif // MPL14_ADVANCED_LEXER_HPP_INCLUDED
+#endif // MPLEX_ADVANCED_LEXER_HPP_INCLUDED

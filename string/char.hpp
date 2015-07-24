@@ -1,5 +1,5 @@
-#ifndef MPL14_STRING_CHAR_HPP_INCLUDED
-#define MPL14_STRING_CHAR_HPP_INCLUDED
+#ifndef MPLEX_STRING_CHAR_HPP_INCLUDED
+#define MPLEX_STRING_CHAR_HPP_INCLUDED
 
 #include "../fundamental/integral.hpp"
 #include "../config.hpp"
@@ -37,4 +37,4 @@ namespace mplex
     };
 }
 
-#endif // MPL14_STRING_CHAR_HPP_INCLUDED
+#endif // MPLEX_STRING_CHAR_HPP_INCLUDED

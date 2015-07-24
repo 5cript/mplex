@@ -1,5 +1,5 @@
-#ifndef MPL14_STRING_ERASE_HPP_INCLUDED
-#define MPL14_STRING_ERASE_HPP_INCLUDED
+#ifndef MPLEX_STRING_ERASE_HPP_INCLUDED
+#define MPLEX_STRING_ERASE_HPP_INCLUDED
 
 #include "string.hpp"
 #include "../tuple/apply.hpp"
@@ -20,4 +20,4 @@ namespace mplex { namespace string_algorithm
 }
 }
 
-#endif // MPL14_STRING_ERASE_HPP_INCLUDED
+#endif // MPLEX_STRING_ERASE_HPP_INCLUDED

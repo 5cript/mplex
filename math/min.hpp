@@ -1,5 +1,5 @@
-#ifndef MPL14_MATH_MIN_HPP_INCLUDED
-#define MPL14_MATH_MIN_HPP_INCLUDED
+#ifndef MPLEX_MATH_MIN_HPP_INCLUDED
+#define MPLEX_MATH_MIN_HPP_INCLUDED
 
 #include "../fundamental/integral.hpp"
 
@@ -11,4 +11,4 @@ namespace mplex {
     };
 }
 
-#endif // MPL14_MATH_MIN_HPP_INCLUDED
+#endif // MPLEX_MATH_MIN_HPP_INCLUDED

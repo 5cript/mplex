@@ -33,4 +33,4 @@ namespace mplex
     using remove_if_t = typename remove_if <Tuple, Predicate>::type;
 }
 
-#endif // MPL14_TUPLE_REMOVE_IF_HPP_INCLUDED
+#endif // MPLEX_TUPLE_REMOVE_IF_HPP_INCLUDED

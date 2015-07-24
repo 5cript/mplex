@@ -31,4 +31,4 @@ namespace mplex {
     using find_if_t = typename find_if <Tuple, Predicate>::type;
 }
 
-#endif // MPL14_TUPLE_FIND_IF_HPP_INCLUDED
+#endif // MPLEX_TUPLE_FIND_IF_HPP_INCLUDED

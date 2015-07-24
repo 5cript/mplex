@@ -1,5 +1,5 @@
-#ifndef MPL14_HPP_INCLUDED
-#define MPL14_HPP_INCLUDED
+#ifndef MPLEX_HPP_INCLUDED
+#define MPLEX_HPP_INCLUDED
 
 // this file is for convenience, but actually I personally do not recommend to use it
 
@@ -81,4 +81,4 @@
 // type_print
 #include "type_print/type_print.hpp"
 
-#endif // MPL14_HPP_INCLUDED
+#endif // MPLEX_HPP_INCLUDED

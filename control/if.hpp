@@ -1,5 +1,5 @@
-#ifndef MPL14_CONTROL_IF_HPP_INCLUDED
-#define MPL14_CONTROL_IF_HPP_INCLUDED
+#ifndef MPLEX_CONTROL_IF_HPP_INCLUDED
+#define MPLEX_CONTROL_IF_HPP_INCLUDED
 
 #include "../fundamental/eval_if.hpp"
 #include "../fundamental/integral.hpp"
@@ -72,4 +72,4 @@ namespace mplex
     using lazy_if_vt = typename lazy_if <bool_ <Condition>, Then, Else>::type;
 }
 
-#endif // MPL14_CONTROL_IF_HPP_INCLUDED
+#endif // MPLEX_CONTROL_IF_HPP_INCLUDED

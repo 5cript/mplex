@@ -1,5 +1,5 @@
-#ifndef MPL14_ADVANCED_TOKEN_MAPPER_HPP_INCLUDED
-#define MPL14_ADVANCED_TOKEN_MAPPER_HPP_INCLUDED
+#ifndef MPLEX_ADVANCED_TOKEN_MAPPER_HPP_INCLUDED
+#define MPLEX_ADVANCED_TOKEN_MAPPER_HPP_INCLUDED
 
 #include "../control/if.hpp"
 #include "../fundamental/is_same.hpp"
@@ -28,4 +28,4 @@ namespace mplex {
     using map_types_t = typename map_types <Tuple, SwitchBase, CaseSensitive>::type;
 }
 
-#endif // MPL14_ADVANCED_TOKEN_MAPPER_HPP_INCLUDED
+#endif // MPLEX_ADVANCED_TOKEN_MAPPER_HPP_INCLUDED

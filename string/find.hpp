@@ -1,5 +1,5 @@
-#ifndef MPL14_STRING_FIND_HPP_INCLUDED
-#define MPL14_STRING_FIND_HPP_INCLUDED
+#ifndef MPLEX_STRING_FIND_HPP_INCLUDED
+#define MPLEX_STRING_FIND_HPP_INCLUDED
 
 #include "string.hpp"
 #include "compare.hpp"

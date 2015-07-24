@@ -24,4 +24,4 @@ namespace mplex
     using transform_t = typename transform <Tuple, Predicate>::type;
 }
 
-#endif // MPL14_TUPLE_TRANSFORM_HPP_INCLUDED
+#endif // MPLEX_TUPLE_TRANSFORM_HPP_INCLUDED

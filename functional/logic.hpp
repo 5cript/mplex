@@ -1,5 +1,5 @@
-#ifndef MPL14_FUNCTIONAL_LOGIC_HPP_INCLUDED
-#define MPL14_FUNCTIONAL_LOGIC_HPP_INCLUDED
+#ifndef MPLEX_FUNCTIONAL_LOGIC_HPP_INCLUDED
+#define MPLEX_FUNCTIONAL_LOGIC_HPP_INCLUDED
 
 namespace mplex {
     namespace logic_operators {
@@ -68,4 +68,4 @@ namespace mplex {
     }
 }
 
-#endif // MPL14_FUNCTIONAL_LOGIC_HPP_INCLUDED
+#endif // MPLEX_FUNCTIONAL_LOGIC_HPP_INCLUDED
