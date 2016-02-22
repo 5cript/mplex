@@ -1,6 +1,7 @@
 #ifndef MPLEX_STRING_CHAR_HPP_INCLUDED
 #define MPLEX_STRING_CHAR_HPP_INCLUDED
 
+#include "../control/if.hpp"
 #include "../fundamental/integral.hpp"
 #include "../config.hpp"
 
