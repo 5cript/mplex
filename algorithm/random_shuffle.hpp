@@ -1,10 +1,10 @@
-#ifndef MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
-#define MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
+#ifndef MPLEX_ALGORITHM_RANDOM_SHUFFLE_HPP_INCLUDED
+#define MPLEX_ALGORITHM_RANDOM_SHUFFLE_HPP_INCLUDED
 
 #include "../random/linear_congruential_engine.hpp"
 #include "../random/uniform_int_distribution.hpp"
 #include "../control/if.hpp"
-#include "element_swap.hpp"
+#include "../tuple/element_swap.hpp"
 
 #include <tuple>
 
@@ -20,7 +20,7 @@ namespace mplex
     template <typename Tuple, typename RandomEngine, typename Result = std::tuple<>>
     struct random_shuffle { };
 
-    template <typename RandomEngine, typename Result, typename T, typename ... List>
+    template <typename RandomEngine, typename Result, typename T, typename... List>
     struct random_shuffle <std::tuple<T, List...>, RandomEngine, Result>
     {
         enum {
@@ -44,4 +44,4 @@ namespace mplex
 }
 */
 
-#endif // MPL14_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED
+#endif // MPLEX_TUPLE_RANDOM_SHUFFLE_HPP_INCLUDED

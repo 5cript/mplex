@@ -1,5 +1,5 @@
-#ifndef MPL14_TUPLE_ERASE_HPP_INCLUDED
-#define MPL14_TUPLE_ERASE_HPP_INCLUDED
+#ifndef MPLEX_TUPLE_ERASE_HPP_INCLUDED
+#define MPLEX_TUPLE_ERASE_HPP_INCLUDED
 
 #include "concat.hpp"
 #include "copy.hpp"
@@ -17,14 +17,14 @@ namespace mplex {
         using type = concat_t <copy_t <Tuple, unsigned_<0u>, Begin>, typename erase<typename erase <Tuple, unsigned_<0>, Begin>::type, unsigned_<0>, unsigned_ <End::value - Begin::value>>::type>;
     };
 
-    template <typename Tuple, typename End>
-    struct erase <Tuple, unsigned_<0>, End>
+    template <typename Tuple, typename End, typename WT1>
+    struct erase <Tuple, integral<WT1, 0>, End>
     {
         using type = typename erase <pop_front_t <Tuple>, unsigned_<0>, unsigned_ <End::value - 1>>::type;
     };
 
-    template <typename Tuple>
-    struct erase <Tuple, unsigned_<0>, unsigned_<0>>
+    template <typename Tuple, typename WT1, typename WT2>
+    struct erase <Tuple, integral<WT1, 0u>, integral<WT2, 0u>>
     {
         using type = Tuple;
     };
@@ -37,4 +37,4 @@ namespace mplex {
     using erase_vt = typename erase <Tuple, unsigned_<Begin>, unsigned_<End>>::type;
 }
 
-#endif // MPL14_TUPLE_ERASE_HPP_INCLUDED
+#endif // MPLEX_TUPLE_ERASE_HPP_INCLUDED

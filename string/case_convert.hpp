@@ -1,9 +1,10 @@
-#ifndef MPL14_STRING_CASE_CONVERT_HPP_INCLUDED
-#define MPL14_STRING_CASE_CONVERT_HPP_INCLUDED
+#ifndef MPLEX_STRING_CASE_CONVERT_HPP_INCLUDED
+#define MPLEX_STRING_CASE_CONVERT_HPP_INCLUDED
 
 #include "classification.hpp"
-#include "../tuple/transform.hpp"
 #include "algorithm_adapter.hpp"
+
+#include "../algorithm/transform.hpp"
 
 namespace mplex { namespace string_algorithm {
 
@@ -24,4 +25,4 @@ namespace mplex { namespace string_algorithm {
 } // mplex
 } // string_algorithm
 
-#endif // MPL14_STRING_CASE_CONVERT_HPP_INCLUDED
+#endif // MPLEX_STRING_CASE_CONVERT_HPP_INCLUDED

@@ -1,8 +1,8 @@
-#ifndef MPL14_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
-#define MPL14_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
+#ifndef MPLEX_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
+#define MPLEX_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
 
 #include "../control/if.hpp"
-#include "../integral.hpp"
+#include "../fundamental/integral.hpp"
 #include "push_front.hpp"
 
 #include <tuple>
@@ -13,18 +13,18 @@ namespace mplex
     struct element_swap
     { };
 
-    template <typename Tuple, unsigned First, unsigned Second, unsigned Index, typename T, typename ... ReducedList>
+    template <typename Tuple, unsigned First, unsigned Second, unsigned Index, typename T, typename... ReducedList>
     struct element_swap <Tuple, First, Second, std::tuple<T, ReducedList...>, Index> {
         static_assert (First < std::tuple_size <Tuple>::value, "Index out of bounds");
         static_assert (Second < std::tuple_size <Tuple>::value, "Index out of bounds");
 
-        using single = if_t <Index == First,
-                             integral <unsigned, Second>,
-                             if_t <Index == Second,
-                                   integral <unsigned, First>,
-                                   integral <unsigned, Index>
-                                   >
-                            >;
+        using single = if_vt <Index == First,
+                              integral <unsigned, Second>,
+                              if_vt <Index == Second,
+                                     integral <unsigned, First>,
+                                     integral <unsigned, Index>
+                                     >
+                             >;
 
         using type = push_front_t <typename element_swap<Tuple, First, Second, std::tuple<ReducedList...>, Index + 1>::type,
                                    typename std::tuple_element <single::value, Tuple>::type>;
@@ -39,4 +39,4 @@ namespace mplex
     using element_swap_t = typename element_swap<Tuple, First, Second>::type;
 }
 
-#endif // MPL14_TUPLE_ELEMENT_SWAP_HPP_INCLUDED
+#endif // MPLEX_TUPLE_ELEMENT_SWAP_HPP_INCLUDED

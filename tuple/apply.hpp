@@ -1,5 +1,5 @@
-#ifndef MPL14_TUPLE_APPLY_HPP_INCLUDED
-#define MPL14_TUPLE_APPLY_HPP_INCLUDED
+#ifndef MPLEX_TUPLE_APPLY_HPP_INCLUDED
+#define MPLEX_TUPLE_APPLY_HPP_INCLUDED
 
 #include "back.hpp"
 #include "front.hpp"
@@ -11,39 +11,35 @@ namespace mplex
 {
 
     /** @param Tuple A tuple.
-     *  @param Final A variadic template receiving the elements of "Tuple" as parameters.
-     *  @param AccumList Internal.
+     *  @param Function A variadic template receiving the elements of "Tuple" as parameters.
      *
-     *  @return basically Final<TupleElements...>.
+     *  @return basically Function<TupleElements...>.
      */
-    template <typename Tuple, template <typename...> class Final, typename ... AccumList>
-    struct apply {
-        using type = typename
-        apply <pop_front_t <Tuple>, Final, AccumList..., front_t <Tuple>>::type;
+    template <typename Tuple, template <typename...> class Function>
+    struct apply {    };
+
+    template <template <typename...> class Function, typename... List>
+    struct apply <std::tuple <List...>, Function> {
+        using type = Function <List...>;
     };
 
-    template <template <typename...> class Final, typename ... AccumList>
-    struct apply <std::tuple <>, Final, AccumList...> {
-        using type = Final <AccumList...>;
-    };
-
-    template <typename Tuple, template <typename...> class Final, typename ... AccumList>
-    using apply_t = typename apply <Tuple, Final, AccumList...>::type;
+    template <typename Tuple, template <typename...> class Function>
+    using apply_t = typename apply <Tuple, Function>::type;
 
     // APPLY_REVERSE
-    template <typename Tuple, template <typename...> class Final, typename ... AccumList>
+    template <typename Tuple, template <typename...> class Function, typename... AccumList>
     struct apply_reverse {
         using type = typename
-        apply_reverse <pop_back_t <Tuple>, Final, back_t <Tuple>, AccumList...>::type;
+        apply_reverse <pop_back_t <Tuple>, Function, back_t <Tuple>, AccumList...>::type;
     };
 
-    template <template <typename...> class Final, typename ... AccumList>
-    struct apply_reverse <std::tuple <>, Final, AccumList...> {
-        using type = Final <AccumList...>;
+    template <template <typename...> class Function, typename... AccumList>
+    struct apply_reverse <std::tuple <>, Function, AccumList...> {
+        using type = Function <AccumList...>;
     };
 
-    template <typename Tuple, template <typename...> class Final, typename ... AccumList>
-    using apply_reverse_t = typename apply_reverse <Tuple, Final, AccumList...>::type;
+    template <typename Tuple, template <typename...> class Function, typename... AccumList>
+    using apply_reverse_t = typename apply_reverse <Tuple, Function, AccumList...>::type;
 }
 
-#endif // MPL14_TUPLE_APPLY_HPP_INCLUDED
+#endif // MPLEX_TUPLE_APPLY_HPP_INCLUDED

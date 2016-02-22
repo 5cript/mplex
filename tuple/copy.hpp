@@ -1,5 +1,5 @@
-#ifndef MPL14_TUPLE_COPY_H_INCLUDED
-#define MPL14_TUPLE_COPY_H_INCLUDED
+#ifndef MPLEX_TUPLE_COPY_H_INCLUDED
+#define MPLEX_TUPLE_COPY_H_INCLUDED
 
 #include "push_back.hpp"
 #include "push_front.hpp"
@@ -7,36 +7,40 @@
 
 #include <tuple>
 
-#include "../integral.hpp"
+#include "../fundamental/integral.hpp"
 
 namespace mplex {
-    template <typename Tuple, typename Begin, typename End, bool ambiguity_kill = false>
+    template <typename Tuple, typename Begin, typename End>
     struct copy { };
 
-    template <typename Begin, typename End, typename T, typename ... List>
-    struct copy <std::tuple <T, List...>, Begin, End, false> {
+    template <typename Begin, typename End, typename T, typename... List>
+    struct copy <std::tuple <T, List...>, Begin, End> {
 
         static_assert (End::value <= 1 + sizeof...(List), "Out of range (End ist too large)");
-        static_assert (Begin::value < End::value, "Range is malformed. end >= begin");
+        static_assert (Begin::value < End::value, "Range is malformed. end < begin");
 
         using type = typename copy <std::tuple <List...>, unsigned_<Begin::value - 1>, unsigned_<End::value - 1>>::type;
     };
 
-    template <typename End, typename T, typename ... List>
-    struct copy <std::tuple <T, List...>, unsigned_<0u>, End, false> {
+    template <typename End, typename WT1, typename T, typename... List>
+    struct copy <std::tuple <T, List...>, integral<WT1, 0u>, End> {
 
         using Tuple = std::tuple <List...>;
 
         static_assert (End::value <= 1 + sizeof...(List), "Out of range (End ist Endo large)");
 
-        using type = push_front_t <typename copy <Tuple, unsigned_<0u>, unsigned_<End::value - 1>, End::value == 1>::type,
+        using type = push_front_t <typename copy <Tuple, unsigned_<0u>, unsigned_<End::value - 1>>::type,
                                    T>;
     };
 
-    template <typename ... List>
-    struct copy <std::tuple<List...>, unsigned_<0u>, unsigned_<0u>, true> {
+    template <typename WT1, typename WT2, typename T, typename... List>
+    struct copy <std::tuple <T, List...>, integral<WT1, 0u>, integral<WT2, 0u>> {
+        using type = std::tuple <>;
+    };
 
-        using type = std::tuple<>;
+    template <typename Begin, typename End>
+    struct copy <std::tuple<>, Begin, End> {
+        using type = std::tuple <>;
     };
 
     template <typename Tuple, typename Begin, typename End>
@@ -46,4 +50,4 @@ namespace mplex {
     using copy_vt = typename copy <Tuple, unsigned_<Begin>, unsigned_<End>>::type;
 }
 
-#endif // MPL14_TUPLE_COPY_H_INCLUDED
+#endif // MPLEX_TUPLE_COPY_H_INCLUDED

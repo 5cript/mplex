@@ -1,19 +1,18 @@
-#ifndef MPL14_STRING_FIND_HPP_INCLUDED
-#define MPL14_STRING_FIND_HPP_INCLUDED
+#ifndef MPLEX_STRING_FIND_HPP_INCLUDED
+#define MPLEX_STRING_FIND_HPP_INCLUDED
 
 #include "string.hpp"
 #include "compare.hpp"
-#include "../tuple/find.hpp"
+#include "../algorithm/find.hpp"
 #include "../tuple/apply.hpp"
 
 namespace mplex { namespace string_algorithm {
 
-    template <typename String, typename WhatString, template <typename, typename> class ComparisonPredicate = mplex::is_iequal>
-    struct find {
-        using type = typename mplex::find <typename String::type, typename WhatString::type, ComparisonPredicate>::type;
-    };
+    template <typename String, typename WhatString, typename ComparisonPredicate = mplex::is_iequal>
+    struct find : adapt <String, mplex::find, typename WhatString::type, ComparisonPredicate>
+    { };
 
-    template <typename String, typename WhatString, template <typename, typename> class ComparisonPredicate = mplex::is_iequal>
+    template <typename String, typename WhatString, typename ComparisonPredicate = mplex::is_iequal>
     using find_t = typename find <String, WhatString, ComparisonPredicate>::type;
 }
 }

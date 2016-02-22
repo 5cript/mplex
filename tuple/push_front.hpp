@@ -1,5 +1,5 @@
-#ifndef MPL14_TUPLE_PUSH_FRONT_HPP_INCLUDED
-#define MPL14_TUPLE_PUSH_FRONT_HPP_INCLUDED
+#ifndef MPLEX_TUPLE_PUSH_FRONT_HPP_INCLUDED
+#define MPLEX_TUPLE_PUSH_FRONT_HPP_INCLUDED
 
 #include <tuple>
 
@@ -14,7 +14,7 @@ namespace mplex
     struct push_front
     { };
 
-    template <typename Elem, typename ... List>
+    template <typename Elem, typename... List>
     struct push_front <std::tuple <List...>, Elem> {
         using type = std::tuple <Elem, List...>;
     };
@@ -23,4 +23,4 @@ namespace mplex
     using push_front_t = typename push_front <Tuple, Elem>::type;
 }
 
-#endif // MPL14_TUPLE_PUSH_FRONT_HPP_INCLUDED
+#endif // MPLEX_TUPLE_PUSH_FRONT_HPP_INCLUDED

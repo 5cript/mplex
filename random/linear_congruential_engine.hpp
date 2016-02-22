@@ -1,7 +1,8 @@
-#ifndef MPL14_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
-#define MPL14_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
+#ifndef MPLEX_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
+#define MPLEX_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
 
 #include "../time/time.hpp"
+#include "../time/date.hpp"
 
 namespace mplex
 {
@@ -13,11 +14,11 @@ namespace mplex
             constexpr static long long c = 0;
         };
 
-        template <long long previous>
+        template <typename previous>
         struct linear_congruential_engine {
-            constexpr static long long value = (lcg_params::a * previous + lcg_params::c) % lcg_params::m;
+            constexpr static long long value = (lcg_params::a * previous::value + lcg_params::c) % lcg_params::m;
 
-            struct next : public linear_congruential_engine <value>
+            struct next : public linear_congruential_engine <long_long_<value>>
             { };
         };
 
@@ -28,4 +29,4 @@ namespace mplex
     }
 }
 
-#endif // MPL14_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
+#endif // MPLEX_RANDOM_LINEAR_CONGRUENTIAL_ENGINE_HPP_INCLUDED
