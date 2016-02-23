@@ -8,3 +8,4 @@
 /CMakeLists.txt
 *.idea
 /example.cpp
+*build_log.html
