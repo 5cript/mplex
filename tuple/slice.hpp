@@ -15,21 +15,21 @@ namespace mplex
         };
     }
 
-    template <typename TupleT, unsigned Amount>
+    template <typename TupleT, typename Amount>
     struct slice_front
     {
-        using type = typename internal::slice_impl <TupleT, 0, std::make_integer_sequence <unsigned, Amount> >::type;
+        using type = typename internal::slice_impl <TupleT, 0, std::make_integer_sequence <unsigned, Amount::value> >::type;
     };
 
-    template <typename TupleT, unsigned Amount>
+    template <typename TupleT, typename Amount>
     struct slice_back
     {
-        using type = typename internal::slice_impl <TupleT, std::tuple_size <TupleT>::value - Amount, std::make_integer_sequence <unsigned, Amount> >::type;
+        using type = typename internal::slice_impl <TupleT, std::tuple_size <TupleT>::value - Amount::value, std::make_integer_sequence <unsigned, Amount::value> >::type;
     };
 
-    template <typename TupleT, unsigned Amount>
+    template <typename TupleT, typename Amount>
     using slice_back_t = typename slice_back <TupleT, Amount>::type;
 
-    template <typename TupleT, unsigned Amount>
+    template <typename TupleT, typename Amount>
     using slice_front_t = typename slice_front <TupleT, Amount>::type;
 }
