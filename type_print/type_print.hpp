@@ -3,6 +3,7 @@
 
 #include "../config.hpp"
 #include "../string/string.hpp"
+#include "../string/inline_string.hpp"
 #include "../fundamental/for_each_exec.hpp"
 
 #ifdef HAS_BOOST_STRING_ALGORITHM
