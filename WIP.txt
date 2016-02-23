@@ -1,0 +1,277 @@
+#include "type_print/type_print.hpp"
+#include "tuple/slice.hpp"
+#include "tuple/erase.hpp"
+#include "tuple/apply.hpp"
+//#include "functional/lift.hpp"
+#include "fundamental/identity.hpp"
+#include "tuple/push_front.hpp"
+
+#include <iostream>
+#include <tuple>
+#include <array>
+#include <utility>
+#include <type_traits>
+
+using namespace mplex;
+
+template <template <typename...> class f>
+struct lift
+{
+    template <typename... List>
+    struct apply
+    {
+        using type = typename f <List...>::type;
+    };
+};
+
+template <typename TupleT, typename Algorithm, typename ContinuationPredicate, typename PackageSize = unsigned_ <30>, typename HighLevelIndex = unsigned_ <0> >
+struct deep_recurse
+{
+    using current_slice = slice_front_t <TupleT, PackageSize>;
+    using rest = erase_t <TupleT, int_ <0>, PackageSize>;
+    using intermediate_result = typename apply_t <push_front_t <current_slice, unsigned_ <HighLevelIndex::value * PackageSize::value>>, Algorithm::template apply>::type;
+    using type = lazy_if_vt <ContinuationPredicate::template apply <intermediate_result,
+                                                                    unsigned_ <HighLevelIndex::value * PackageSize::value>,
+                                                                    current_slice,
+                                                                    rest>::value,
+                             then_ <lift <deep_recurse>,
+                                    TupleT,
+                                    Algorithm,
+                                    ContinuationPredicate,
+                                    PackageSize,
+                                    unsigned_ <HighLevelIndex::value + 1>
+                             >,
+                             else_ <lift <identity>,
+                                    intermediate_result
+                            >
+    >;
+};
+
+struct MyAlgorithm
+{
+    template <typename Index, typename... List>
+    struct apply
+    {
+        using type = Index;
+    };
+};
+
+struct MyPredicate
+{
+    template <typename Res, typename Index, typename...>
+    struct apply
+    {
+        enum : bool {
+            value = Index::value < 50
+        };
+    };
+};
+
+int main()
+{
+    using enormous = std::tuple <
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int,
+        int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int>;
+
+    print_single <deep_recurse <enormous, MyAlgorithm, MyPredicate>::type>();
+
+    return 0;
+}
