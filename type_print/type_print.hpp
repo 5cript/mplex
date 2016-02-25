@@ -136,12 +136,15 @@ namespace mplex {
         replace ("mplex::placeholders::_<19u>", "_19");
         replace ("mplex::placeholders::_<20u>", "_20");
 
+
         replace (" >", ">");
 
+        // namespaces
         replace ("mplex::", "");
+        replace ("logic_operators::", "");
 
 
-        replace ("mplex::internal", "intern");
+        replace ("internal", "intern");
         replace ("std::tuple", "tuple");
 
         return result;

@@ -8,7 +8,7 @@ namespace mplex {
     template <typename Lhs, typename Rhs>
     struct max {
         using type = if_vt <(Lhs::value>Rhs::value), Lhs, Rhs>;
-        using value = type::value;
+        constexpr static const typename Lhs::value_type value = type::value;
     };
 }
 

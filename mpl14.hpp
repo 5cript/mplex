@@ -17,6 +17,7 @@
 #include "functional/bitwise.hpp"
 #include "functional/arithmetic.hpp"
 #include "functional/logic.hpp"
+#include "functional/compose.hpp"
 
 // sequences / tuples
 #include "tuple/apply.hpp"
@@ -33,6 +34,7 @@
 #include "tuple/copy.hpp"
 #include "tuple/erase.hpp"
 #include "tuple/make_tuple.hpp"
+#include "tuple/is_tuple.hpp"
 
 // algorithm
 #include "algorithm/count.hpp"
@@ -80,5 +82,12 @@
 
 // type_print
 #include "type_print/type_print.hpp"
+
+// math
+#include "math/max.hpp"
+#include "math/min.hpp"
+#include "math/factorial.hpp"
+#include "math/constants.hpp"
+#include "math/sqrt.hpp"
 
 #endif // MPLEX_HPP_INCLUDED

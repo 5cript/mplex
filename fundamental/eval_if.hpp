@@ -8,7 +8,7 @@ namespace mplex {
     template <typename Condition, typename Fallback, typename Function, typename... Parameters>
     struct eval_if_default
     {
-        using type = Fallback; // TODO: think about something more meaningfull here
+        using type = Fallback;
     };
 
     template <typename Fallback, typename Function, typename... Parameters>

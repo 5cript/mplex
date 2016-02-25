@@ -92,7 +92,6 @@ namespace mplex {
             using type = typename Functor::template apply <typename
                 lazy_if <typename is_placeholder::template apply <typename ParameterWraps::type>::type,
                     then_ <tuple_element, int_<ParameterWraps::index::value - 1>, _temp>,
-                    // then_ <identity_functor, typename ParameterWraps::type>,
                     else_ <identity_functor, typename ParameterWraps::type >
                 >::type...
             >::type;

@@ -7,21 +7,25 @@
 
 namespace mplex
 {
+    /**
+     *  Combines two tuples using a wrapper.
+     *
+     *  merge <std::tuple <short, long, long long>,
+     *         std::tuple <float, double, long double>,
+     *         std::pair>
+     *
+     *  will produce
+     *
+     *  tuple <pair <short, float>, pair <long, double>, pair <long long, long double>>
+     */
     template <typename TupleA, typename TupleB, template <typename, typename> class Wrapper>
     struct merge
     { };
 
-    template <typename TA, typename... TailA, typename TB, typename... TailB, template <typename, typename> class Wrapper>
-    struct merge <std::tuple <TA, TailA...>, std::tuple <TB, TailB...>, Wrapper>
+    template <typename... ListA, typename... ListB, template <typename, typename> class Wrapper>
+    struct merge <std::tuple<ListA...>, std::tuple<ListB...>, Wrapper>
     {
-        using type = push_front_t <typename merge <std::tuple <TailA...>, std::tuple <TailB...>, Wrapper>::type,
-                                   Wrapper <TA, TB> >;
-    };
-
-    template <template <typename, typename> class Wrapper>
-    struct merge <std::tuple<>, std::tuple<>, Wrapper>
-    {
-        using type = std::tuple <>;
+        using type = std::tuple <Wrapper <ListA, ListB>...>;
     };
 
     template <typename TupleA, typename TupleB, template <typename, typename> class Wrapper>

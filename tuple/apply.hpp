@@ -26,6 +26,26 @@ namespace mplex
     template <typename Tuple, template <typename...> class Function>
     using apply_t = typename apply <Tuple, Function>::type;
 
+    struct apply_a {
+        template <typename Tuple, template <typename...> class Function>
+        struct apply {};
+    };
+
+    template <typename... List, template <typename...> class Function>
+    struct apply_a::apply <std::tuple <List...>, Function> {
+        using type = Function <List...>;
+    };
+
+    struct apply_af {
+        template <typename Tuple, typename Functor>
+        struct apply {};
+    };
+
+    template <typename... List, typename Functor>
+    struct apply_af::apply <std::tuple <List...>, Functor> {
+        using type = typename Functor::template apply <List...>;
+    };
+
     // APPLY_REVERSE
     template <typename Tuple, template <typename...> class Function, typename... AccumList>
     struct apply_reverse {
