@@ -97,7 +97,7 @@ namespace mplex {
 
     // WARNING! THIS MAKE THE OUTPUT LESS CORRECT, BUT MORE READABLE
     #ifdef HAS_BOOST_STRING_ALGORITHM
-    std::string declutter_mplex_type_name (std::string const& typenom) {
+    inline std::string declutter_mplex_type_name (std::string const& typenom) {
         std::string result = typenom;
 
         auto replace = [&](std::string const& what, std::string const& with) {
@@ -144,6 +144,13 @@ namespace mplex {
 
         replace ("mplex::internal", "intern");
         replace ("std::tuple", "tuple");
+
+        for (int i = 0x20 /* space */; i != 127; ++i)
+        {
+            std::string c;
+            c.push_back((char)i);
+            replace(std::string("(char)") + std::to_string(i), std::string("'") + c + "'");
+        }
 
         return result;
     }
