@@ -7,14 +7,14 @@
 
 namespace mplex
 {
-    DECLARE_INTEGRAL(char);
-    DECLARE_INTEGRAL_N(unsigned char, unsigned_char);
+    MPLEX_DECLARE_INTEGRAL(char);
+    MPLEX_DECLARE_INTEGRAL_N(unsigned char, unsigned_char);
 
-    DECLARE_INTEGRAL(wchar_t);
+    MPLEX_DECLARE_INTEGRAL(wchar_t);
 
 #ifdef UTF_CHAR
-    DECLARE_INTEGRAL(char16_t);
-    DECLARE_INTEGRAL(char32_t);
+    MPLEX_DECLARE_INTEGRAL(char16_t);
+    MPLEX_DECLARE_INTEGRAL(char32_t);
 #endif
 
     struct to_upper {

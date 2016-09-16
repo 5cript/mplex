@@ -15,18 +15,25 @@
 
 #if defined(CLANG) || defined(GCC)
 #include <typeinfo>
-#include <cxxabi.h>
+
+#ifndef __BORLANDC__
+#	include <cxxabi.h>
+#endif
 
 namespace mplex {
     template <typename T, unsigned bufferSize = 1 << 16>
     static std::ostream& stream_demangled(std::ostream &stream)
-    {
-        char buffer[bufferSize];
-        int status = 0;
-        std::size_t bufSizeCpy = bufferSize;
-        abi::__cxa_demangle(typeid(T).name(), buffer, &bufSizeCpy, &status);
-        stream << buffer;
-        return stream;
+	{
+#ifndef __BORLANDC__
+		char buffer[bufferSize];
+		int status = 0;
+		std::size_t bufSizeCpy = bufferSize;
+		abi::__cxa_demangle(typeid(T).name(), buffer, &bufSizeCpy, &status);
+		stream << buffer;
+#else
+		stream << typeid(T).name();
+#endif
+		return stream;
     }
 }
 #else
