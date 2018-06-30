@@ -1,6 +1,8 @@
 #ifndef MPLEX_TUPLE_APPLY_HPP_INCLUDED
 #define MPLEX_TUPLE_APPLY_HPP_INCLUDED
 
+#include <utility>
+
 #include "back.hpp"
 #include "front.hpp"
 #include "pop_back.hpp"
@@ -16,7 +18,8 @@ namespace mplex
      *  @return basically Function<TupleElements...>.
      */
     template <typename Tuple, template <typename...> class Function>
-    struct apply {    };
+    struct apply
+    { };
 
     template <template <typename...> class Function, typename... List>
     struct apply <std::tuple <List...>, Function> {
@@ -33,6 +36,27 @@ namespace mplex
 
     template <typename... List, template <typename...> class Function>
     struct apply_a::apply <std::tuple <List...>, Function> {
+        using type = Function <List...>;
+    };
+
+    template <typename ValueT, typename Sequence, template <ValueT...> class Function>
+    struct apply_values
+    {
+        static_assert(std::is_same_v<Sequence,Sequence>, "Could not apply specialization with std::integer_sequence");
+    };
+
+    template <typename ValueT, template <ValueT...> class Function, ValueT... List>
+    struct apply_values <ValueT, std::integer_sequence <ValueT, List...>, Function> {
+        using type = Function <List...>;
+    };
+
+    struct apply_values_a {
+        template <typename ValueT, typename Sequence, template <ValueT...> class Function>
+        struct apply {};
+    };
+
+    template <typename ValueT, template <ValueT...> class Function, ValueT... List>
+    struct apply_values_a::apply <ValueT, std::integer_sequence <ValueT, List...>, Function> {
         using type = Function <List...>;
     };
 

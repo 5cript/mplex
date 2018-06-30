@@ -18,7 +18,7 @@
 
 namespace mplex
 {
-    template <char ... List>
+    template <char... List>
     struct string;
 
     template <typename... CharArray>
@@ -29,7 +29,7 @@ namespace mplex
     template <typename... CharArray>
     using translate = typename __string <CharArray...>::type;
 
-    template <char ... List>
+    template <char... List>
     struct string
     {
         using size_type = std::make_signed <std::size_t>::type;

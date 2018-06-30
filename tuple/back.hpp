@@ -16,6 +16,11 @@ namespace mplex
         using type = typename std::tuple_element <std::tuple_size <Tuple>::value - 1, Tuple>::type;
     };
 
+    template <>
+    struct back <std::tuple<>> {
+        using type = void;
+    };
+
     struct back_a {
         template <typename Tuple>
         struct apply {

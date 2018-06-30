@@ -16,6 +16,11 @@ namespace mplex
         using type = typename std::tuple_element <0, Tuple>::type;
     };
 
+    template <>
+    struct front <std::tuple<>> {
+        using type = void;
+    };
+
     struct front_a {
         template <typename Tuple>
         struct apply {
