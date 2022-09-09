@@ -1,12 +1,8 @@
 *.cbp
-/main.cpp
-/main.i
 *.o
 *.depend
 *.exe
 *.layout
-/CMakeLists.txt
 *.idea
-/example.cpp
 *build_log.html
 __history/
